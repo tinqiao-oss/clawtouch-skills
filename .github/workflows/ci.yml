@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: List markdown files
+        run: |
+          ls -la *.md
+          echo ""
+          echo "Skill files:"
+          ls *.md 2>/dev/null | grep -v -E '^(README|CHANGELOG|CONTRIBUTING|SECURITY)' || echo "  (none yet)"
+
+      - name: Prohibited-term check (anti-detection / bypass / circumvent)
+        run: |
+          set -e
+          # Skill files only — README / CONTRIBUTING legitimately mention
+          # these terms in the context of "we DO NOT accept this".
+          shopt -s extglob
+          skill_files=$(ls !(README|CHANGELOG|CONTRIBUTING|SECURITY)*.md 2>/dev/null || true)
+          if [ -z "$skill_files" ]; then
+            echo "No skill files to check"
+            exit 0
+          fi
+          if echo "$skill_files" | xargs grep -i -E "anti.cheat|anti.detection|circumvent|bypass.*detection|反作弊|反检测" 2>/dev/null; then
+            echo "::error::Found prohibited terms in skill files — see CONTRIBUTING.md"
+            exit 1
+          fi
+          echo "OK — no prohibited terms in skill files"
+
+      - name: Broken-link sniff (heuristic, non-blocking)
+        continue-on-error: true
+        run: |
+          # Quick heuristic: look for relative links that point at files
+          # that don't exist in this repo. Doesn't follow external URLs.
+          set +e
+          grep -hoE '\[[^]]+\]\(([^):]+\.md)[#)]' *.md 2>/dev/null | \
+            sed -E 's/.*\(([^):#]+)[#)].*/\1/' | sort -u | \
+            while read -r link; do
+              if [ -n "$link" ] && [ ! -f "$link" ]; then
+                echo "::warning::Possibly broken relative link: $link"
+              fi
+            done
+          exit 0

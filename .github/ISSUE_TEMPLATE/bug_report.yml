@@ -1,0 +1,50 @@
+name: Skill bug report
+description: Report a skill that gives wrong steps or doesn't work as written
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing! A skill is only useful if it actually works.
+        Please give enough detail that someone else can reproduce.
+
+  - type: input
+    id: skill
+    attributes:
+      label: Which skill?
+      placeholder: wps-office.md / feishu.md / dingtalk.md
+    validations:
+      required: true
+
+  - type: input
+    id: section
+    attributes:
+      label: Section or table row
+      description: Quote the part of the skill that's wrong
+      placeholder: 'Section "WPS 表格 → Insert row above active row"'
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App version + OS
+      placeholder: WPS Office 12.1.0.16120 on Windows 11 26100
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_vs_actual
+    attributes:
+      label: What the skill says vs what actually happened
+      placeholder: |
+        The skill says `Ctrl+Shift+Plus` opens insert dialog.
+        On my machine that does nothing — I had to use right-click → 插入.
+    validations:
+      required: true
+
+  - type: textarea
+    id: agent_log
+    attributes:
+      label: Agent or `clawtouch-mcp` log (optional)
+      description: Paste the relevant HID call sequence + any error output

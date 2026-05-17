@@ -1,0 +1,12 @@
+# OS / IDE noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+*.bak
+
+# Local notes / scratch
+SCRATCH.md
+DRAFT-*.md

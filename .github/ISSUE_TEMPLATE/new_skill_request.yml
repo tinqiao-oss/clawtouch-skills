@@ -1,0 +1,64 @@
+name: New skill request
+description: Request a skill for an app not yet covered
+labels: [enhancement, new-skill]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. The shorter and more specific this
+        is, the more likely someone (you included!) will pick it up.
+
+  - type: input
+    id: app
+    attributes:
+      label: App name
+      placeholder: 'e.g. 腾讯文档 / 石墨文档 / CNKI / 12306'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Primary user locale
+      options:
+        - China (zh-CN)
+        - International (en)
+        - Other (specify in description below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does this app need a skill?
+      description: |
+        Strong cases mention either (a) LLM training data is thin for
+        this app, (b) the UI / shortcuts differ from generic
+        expectations, or (c) high B2B / personal usage in your scenario.
+      placeholder: |
+        - LLM guesses this app's UI badly (example task it fails on)
+        - Shortcuts differ from generic Office expectations
+        - I use it daily / our company standardizes on it
+    validations:
+      required: true
+
+  - type: textarea
+    id: top_tasks
+    attributes:
+      label: Top 3–5 tasks users would automate in this app
+      placeholder: |
+        1. Send a message in a specific chat
+        2. Submit an approval form
+        3. Check in / out of work
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This app's ToS allows automated UI interaction for personal / RPA / accessibility use
+          required: true
+        - label: I'm not requesting a skill that circumvents application security or anti-automation
+          required: true
