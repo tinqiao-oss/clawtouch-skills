@@ -6,6 +6,34 @@ DingTalk is the other dominant B2B collaboration suite in China
 and check-in (打卡) workflows. Very little LLM training data — this
 skill bridges the gap.
 
+## ⚠️ Compliance scope (read first)
+
+DingTalk's check-in (打卡) and approval (审批) flows produce **legal
+and labor-relationship consequences**. This skill documents the UI
+paths so an LLM can assist a human operator — it is **not** intended
+to drive these flows unattended.
+
+Concretely:
+
+- **Check-in (打卡) on someone else's behalf is prohibited** by most
+  employer policies and by labor regulations in most jurisdictions
+  ("代打卡"). The user must be physically present and personally
+  trigger the check-in; the LLM may at most help navigate to the
+  page or recover from a missed-check-in form.
+- **Approval (审批) actions — 同意 / 拒绝 — must be confirmed by the
+  human approver in real time.** The LLM may summarize the request
+  and pre-fill obvious form fields, but the click on 同意 / 拒绝
+  belongs to a human keystroke or an explicit per-action confirmation
+  in the host application, not to an autonomous agent loop.
+- **Any action that creates a binding record** (submitting an
+  approval, signing off on a reimbursement, recording attendance)
+  should be treated as a "human-in-the-loop" action regardless of how
+  the host application is wired.
+
+This skill is published as a UI reference. Hosts that use it inside
+a 24/7 / event-driven / unattended loop are responsible for adding
+the per-action human confirmation step themselves.
+
 ## When to use this skill
 
 User is operating DingTalk desktop (`DingTalk.exe` on Windows,
