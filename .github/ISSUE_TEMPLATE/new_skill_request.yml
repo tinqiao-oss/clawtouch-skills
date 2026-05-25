@@ -47,9 +47,9 @@ body:
     attributes:
       label: Top 3–5 tasks users would automate in this app
       placeholder: |
-        1. Send a message in a specific chat
-        2. Submit an approval form
-        3. Check in / out of work
+        1. Open a specific chat and send a message
+        2. Open a doc, navigate to a section, insert content
+        3. Switch between calendar / sheet / doc views
     validations:
       required: true
 

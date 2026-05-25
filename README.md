@@ -41,8 +41,8 @@ PRs adding skills for other apps welcome — see [CONTRIBUTING.md](CONTRIBUTING.
 | File | App | Coverage |
 |------|-----|----------|
 | [`wps-office.md`](wps-office.md) | WPS Office (文字 / 表格 / 演示) | Common editing tasks; shortcut differences from MS Office |
-| [`feishu.md`](feishu.md) | Feishu / Lark (飞书) | IM, docs, sheets, calendar, approval |
-| [`dingtalk.md`](dingtalk.md) | DingTalk (钉钉) | IM, approval / 审批, check-in / 打卡 |
+| [`feishu.md`](feishu.md) | Feishu / Lark (飞书) | IM, docs, sheets, calendar |
+| [`dingtalk.md`](dingtalk.md) | DingTalk (钉钉) | IM, file sharing, docs, calendar |
 
 ## How to use
 
@@ -57,25 +57,13 @@ PRs adding skills for other apps welcome — see [CONTRIBUTING.md](CONTRIBUTING.
 4. Issue the high-level task — the model uses the skill's knowledge
    to pick the right HID calls.
 
-## How this differs from the ClawTouch desktop product
+## Soft guidance, not enforcement
 
 Skills are **soft guidance** — the LLM still decides what to do, and
 might not follow the skill exactly. That's fine for development,
-research, or personal automation.
-
-For **deterministic execution** (guaranteed step order, retry on
-failure, audit trail, B2B SLA), see the closed-source
-[ClawTouch desktop product](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/docs/COMMERCIAL_PRODUCT.md)
-— which uses compiled adapters and a state machine instead of LLM-
-interpreted markdown.
-
-| | clawtouch-skills (this repo) | ClawTouch desktop product |
-|---|---|---|
-| Form | Markdown | Compiled code + trained models |
-| Constraint type | Soft (LLM still decides) | Hard (state machine enforces) |
-| Reliability | Probabilistic | Deterministic |
-| Cost to add an app | Hours (write markdown) | Days–weeks (write adapter code) |
-| Best for | Developer / research / personal | B2B production deployment |
+research, or personal automation; if you need stricter execution,
+that lives in the closed-source
+[ClawTouch desktop product](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/docs/COMMERCIAL_PRODUCT.md).
 
 ## Limitations
 

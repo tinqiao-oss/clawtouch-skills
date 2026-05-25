@@ -37,8 +37,8 @@ LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
 | 文件 | 应用 | 覆盖 |
 |------|-----|------|
 | [`wps-office.md`](wps-office.md) | WPS Office (文字 / 表格 / 演示) | 常用编辑任务 + 跟 MS Office 的快捷键差异 |
-| [`feishu.md`](feishu.md) | 飞书 / Lark | IM、文档、表格、日历、审批 |
-| [`dingtalk.md`](dingtalk.md) | 钉钉 | IM、审批、打卡 |
+| [`feishu.md`](feishu.md) | 飞书 / Lark | IM、文档、表格、日历 |
+| [`dingtalk.md`](dingtalk.md) | 钉钉 | IM、文件、文档、日历 |
 
 ## 怎么用
 
@@ -51,22 +51,12 @@ LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
    连上了, `--screen WxH` 覆盖正确的显示器。
 4. 下高层级任务 —— 模型会用 skill 的局部知识挑对的 HID 调用。
 
-## 跟 ClawTouch 桌面端的区别
+## 软性指导, 不强制
 
 Skill 是**软性指导** —— LLM 仍然自己决定, 可能不完全按 skill 走。
-这对开发 / 研究 / 个人自动化场景没问题。
-
-要**确定性执行** (保证步骤顺序、失败重试、审计日志、B2B SLA), 见
-闭源 [ClawTouch 桌面端](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/docs/COMMERCIAL_PRODUCT.zh-CN.md)
-—— 它用编译过的适配器和状态机, 而不是 LLM 解读的 markdown。
-
-| | clawtouch-skills (本仓) | ClawTouch 桌面端 |
-|---|---|---|
-| 形态 | Markdown | 编译代码 + 训练模型 |
-| 约束类型 | 软 (LLM 仍然自己决定) | 硬 (状态机 enforce) |
-| 可靠性 | 概率性 | 确定性 |
-| 加一个新 app 成本 | 几小时 (写 markdown) | 几天到几周 (写适配器代码) |
-| 适合 | 开发者 / 研究 / 个人 | B2B 生产部署 |
+这对开发 / 研究 / 个人自动化场景没问题; 如果需要更严的执行约束,
+那部分在闭源
+[ClawTouch 桌面端](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/docs/COMMERCIAL_PRODUCT.zh-CN.md) 里。
 
 ## 限制
 

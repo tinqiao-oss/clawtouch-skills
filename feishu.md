@@ -9,7 +9,7 @@ Slack or Teams), which is exactly why this skill exists.
 
 The user is operating Feishu desktop (`Feishu.exe` on Windows,
 `Lark.app` on macOS — same app, different branding) for messaging,
-doc / sheet editing, scheduling, or approval workflows.
+doc / sheet editing, or calendar / scheduling.
 
 ## App-wide navigation
 
@@ -79,13 +79,6 @@ Same model as WPS / Excel for basic editing:
 | Create event | `Ctrl+N` or click "+" |
 | Go to today | `T` (when calendar pane has focus) |
 | Day / week / month view | `D` / `W` / `M` (with calendar focus) |
-
-## Approval (审批)
-
-Approval forms are HTML-rendered inside Feishu. Treat them as
-web-form interactions — Tab through fields, type values, click
-submit. **Each company has custom approval templates**, so there's
-no universal layout. Read the form before assuming field order.
 
 ## Known gotchas
 

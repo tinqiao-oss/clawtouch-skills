@@ -1,44 +1,32 @@
 # Skill: DingTalk (钉钉)
 
 For LLM agents driving **DingTalk desktop** through `clawtouch-mcp`.
-DingTalk is the other dominant B2B collaboration suite in China
-(alongside Feishu), with a particular emphasis on approval (审批)
-and check-in (打卡) workflows. Very little LLM training data — this
-skill bridges the gap.
+DingTalk is one of the dominant B2B collaboration suites in China.
+Very little LLM training data — this skill bridges the gap for
+day-to-day office surfaces.
 
-## ⚠️ Compliance scope (read first)
+## Scope
 
-DingTalk's check-in (打卡) and approval (审批) flows produce **legal
-and labor-relationship consequences**. This skill documents the UI
-paths so an LLM can assist a human operator — it is **not** intended
-to drive these flows unattended.
+This skill covers DingTalk's messaging, file sharing, docs, and
+calendar surfaces — the low-risk daily-office workflows.
 
-Concretely:
+**Not covered** (intentionally out of scope):
 
-- **Check-in (打卡) on someone else's behalf is prohibited** by most
-  employer policies and by labor regulations in most jurisdictions
-  ("代打卡"). The user must be physically present and personally
-  trigger the check-in; the LLM may at most help navigate to the
-  page or recover from a missed-check-in form.
-- **Approval (审批) actions — 同意 / 拒绝 — must be confirmed by the
-  human approver in real time.** The LLM may summarize the request
-  and pre-fill obvious form fields, but the click on 同意 / 拒绝
-  belongs to a human keystroke or an explicit per-action confirmation
-  in the host application, not to an autonomous agent loop.
-- **Any action that creates a binding record** (submitting an
-  approval, signing off on a reimbursement, recording attendance)
-  should be treated as a "human-in-the-loop" action regardless of how
-  the host application is wired.
+- Check-in / attendance flows (打卡 / 补卡)
+- Approval submit / approve / reject (审批同意 / 拒绝)
+- Reimbursement sign-off, attendance adjustments, or any other
+  action that creates a binding labor or financial record
 
-This skill is published as a UI reference. Hosts that use it inside
-a 24/7 / event-driven / unattended loop are responsible for adding
-the per-action human confirmation step themselves.
+These flows must be triggered by the user in person, not by an
+unattended agent loop. They are deliberately omitted from this
+skill — if your use case requires them, the user must drive the
+relevant click in real time.
 
 ## When to use this skill
 
 User is operating DingTalk desktop (`DingTalk.exe` on Windows,
-`DingTalk.app` on macOS) for messaging, approval, check-in, file
-sharing, or scheduled meeting management.
+`DingTalk.app` on macOS) for messaging, file sharing, or calendar /
+docs interaction.
 
 ## App-wide navigation
 
@@ -64,45 +52,6 @@ sharing, or scheduled meeting management.
 Same as Feishu — `Enter` vs `Ctrl+Enter` is user-configurable.
 Default to `Ctrl+Enter`; switch only after observing a misfire.
 
-## Approval (审批) — the high-value flow
-
-Approval is DingTalk's signature workflow. Many B2B users primarily
-interact with DingTalk only to submit or process approvals, so this
-is the highest-leverage section of the skill.
-
-| Task | Step sequence |
-|------|---------------|
-| Open approval section | Click "工作" in left sidebar → "审批" |
-| Find approval template | Search by name in the template list |
-| Submit new approval | Click template → fill form (Tab between fields, type values) → click 提交 button |
-| Approve pending request | Click pending item in inbox → review → click 同意 button |
-| Reject with reason | Click 拒绝 → fill reason in popup → 确定 |
-
-### Form-field types
-
-DingTalk approval forms mix many field types — each renders
-differently:
-
-- **Date fields**: open a date picker on focus; navigate with arrow
-  keys + Enter to confirm
-- **Currency fields**: auto-format on blur — **don't type the ¥ symbol**
-- **Attachment fields**: open the OS file dialog on click; handle the
-  OS dialog, not DingTalk internals
-- **Approver selection** at the bottom: usually pre-filled by template
-  — verify, don't blindly skip
-
-## Check-in (打卡)
-
-| Task | Step sequence |
-|------|---------------|
-| Open check-in section | "工作" → "考勤打卡" |
-| Manual check-in | Click the large round 打卡 button |
-| Request missed check-in (补卡) | "补卡" link → fill form → submit (this is itself an approval flow) |
-
-> ⚠️ Check-in is **location-aware** (a mobile-first feature). Desktop
-> check-in only works at office Wi-Fi or via admin allowlist. Don't
-> assume desktop check-in always works.
-
 ## Docs and Calendar
 
 Similar in shape to Feishu's — block-based docs (`/` opens block
@@ -118,7 +67,7 @@ menu, markdown shortcuts work) and standard calendar grid. See the
 - **Multi-org switching**: users in multiple organizations see an
   org-switcher at top. The operation context can change based on
   active org — verify the active org before doing org-specific
-  actions (approval submission, contact lookup).
+  lookups.
 - **Login flow**: QR-code only on first install. **Don't try to
   type credentials.**
 - **In-app mini-programs (工作 tab)**: companies install custom
