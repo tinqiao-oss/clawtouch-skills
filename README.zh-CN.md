@@ -54,9 +54,8 @@ LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
 ## 软性指导, 不强制
 
 Skill 是**软性指导** —— LLM 仍然自己决定, 可能不完全按 skill 走。
-这对开发 / 研究 / 个人自动化场景没问题; 如果需要更严的执行约束,
-那部分在闭源
-[ClawTouch 桌面端](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/docs/COMMERCIAL_PRODUCT.zh-CN.md) 里。
+这对开发 / 研究 / 个人自动化场景没问题; 更严的执行约束在闭源
+ClawTouch 桌面端 (邮件咨询 `support@tinqiao.com`)。
 
 ## 限制
 

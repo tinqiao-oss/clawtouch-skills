@@ -61,9 +61,8 @@ PRs adding skills for other apps welcome — see [CONTRIBUTING.md](CONTRIBUTING.
 
 Skills are **soft guidance** — the LLM still decides what to do, and
 might not follow the skill exactly. That's fine for development,
-research, or personal automation; if you need stricter execution,
-that lives in the closed-source
-[ClawTouch desktop product](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/docs/COMMERCIAL_PRODUCT.md).
+research, or personal automation. Stricter execution lives in the
+closed-source ClawTouch desktop product (contact `support@tinqiao.com`).
 
 ## Limitations
 

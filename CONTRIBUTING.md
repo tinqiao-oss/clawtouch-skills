@@ -22,7 +22,7 @@ an operator's manual for one application.
 - **Adapter code / executable scripts.** Skills are markdown
   guidance, not code. Code-level adapters belong in agent
   frameworks; the ClawTouch-specific case is the closed-source
-  [desktop product](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/docs/COMMERCIAL_PRODUCT.md).
+  desktop product (contact `support@tinqiao.com`).
 - **Skills targeting bypass of application security or anti-
   automation features.** ClawTouch supports legitimate accessibility,
   RPA, and test scenarios — not workarounds for app-side enforcement.
