@@ -11,6 +11,29 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+### Compliance — second-pass audit (codex round 2)
+
+A follow-up codex audit on the first compliance pass surfaced one
+relevant issue for this docs-only repo (no executable code, no
+packaging metadata, no bundled third-party code → P3/P4/P5/P6 from
+the audit do not apply here):
+
+- **`## Acceptable use` reworded to scope-of-support, not a use
+  restriction.** Replaced the implicit "this skill is not intended
+  to ... and does not describe" phrasing with "this project does not
+  support, document, or assist with". Added an explicit sentence
+  that the section describes maintainer support scope only and is
+  **not** an additional restriction on top of the MIT License's
+  grant of rights over the markdown text content. Avoids the
+  "MIT + use ban" structural conflict.
+- **PRC Anti-Unfair Competition Law Art. 13 dating corrected.**
+  Was "as amended 2025-10-15", which conflates promulgation and
+  effective dates. Now reads "promulgated 2025-06-27, effective
+  2025-10-15". The substantive description was also broadened
+  from the narrow "improper acquisition of others' data" to the
+  statutory phrasing covering circumvention of technical management
+  measures, fraud, and coercion as means.
+
 ### Added
 
 - **`TRADEMARKS.md`** — bilingual (English + 简体中文) nominative
@@ -35,11 +58,15 @@ skills, not breaking API changes.
   that the calling LLM is solely responsible for any generated
   content (including PRC *AI Generated Content Labeling Measure*
   obligations effective 2025-09-01).
-- **README `## Acceptable use` section** — explicit prohibition on
-  using skills to bypass any application's anti-fraud / risk-control
-  / rate-limit measures, operate unauthorized accounts, or violate
+- **README `## Acceptable use` section** — explicit statement that
+  the project does not support, document, or assist with use cases
+  that bypass any application's anti-fraud / risk-control /
+  rate-limit measures, operate unauthorized accounts, or violate
   applicable law; references PRC *Anti-Unfair Competition Law*
-  Art. 13 (as amended 2025-10-15).
+  Art. 13 (the Internet-sector specific provision; promulgated
+  2025-06-27, effective 2025-10-15). Wording explicitly clarifies
+  that the section describes maintainer-support scope only and is
+  **not** an additional restriction on top of the MIT License.
 - **README License section** — added cross-links to
   `LICENSE.zh-CN.md`, `NOTICE`, and `TRADEMARKS.md`; clarified that
   no third-party trademark owner has endorsed or sponsored this

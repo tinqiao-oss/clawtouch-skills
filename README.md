@@ -71,26 +71,32 @@ jurisdiction.
 
 These skill files describe **legitimate** uses of the target
 applications — accessibility tooling, internal RPA on accounts the
-operator owns, QA / compatibility testing, personal automation. They
-are **not** intended to and do **not** describe:
+operator owns, QA / compatibility testing, personal automation. This
+project does **not** support, document, or assist with use cases that:
 
-- Bypassing, evading, or interfering with any application's
-  anti-fraud, anti-abuse, rate-limiting, or risk-control measures.
-- Operating accounts the user does not lawfully own or have explicit
+- Bypass, evade, or interfere with any application's anti-fraud,
+  anti-abuse, rate-limiting, or risk-control measures.
+- Operate accounts the user does not lawfully own or have explicit
   authorization to operate.
-- Activities prohibited by the target application's Terms of Service
-  in the user's jurisdiction (check the ToS before applying any
-  skill to a specific use case).
-- Activities that violate applicable law — including, but not limited
-  to, PRC *Anti-Unfair Competition Law* Art. 13 (as amended
-  2025-10-15) on improper acquisition of others' data, *Personal
-  Information Protection Law*, *Cybersecurity Law*, and equivalent
-  laws in other jurisdictions.
+- Are prohibited by the target application's Terms of Service in the
+  user's jurisdiction (check the ToS before applying any skill to a
+  specific use case).
+- Violate applicable law — including, but not limited to, PRC
+  *Anti-Unfair Competition Law* Art. 13 (the Internet sector
+  specific provision; promulgated 2025-06-27, effective
+  2025-10-15) covering improper means — including circumventing
+  technical management measures — to acquire or use another
+  operator's data; *Personal Information Protection Law*;
+  *Cybersecurity Law*; and equivalent laws in other jurisdictions.
 
-Users are independently responsible for evaluating their specific use
-case against applicable laws and the target application's ToS.
-Contributors are required to flag any skill content that risks
-crossing these lines (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+These statements describe the scope of our maintainer support and
+documentation — they are **not** additional restrictions on the
+MIT License, which continues to govern all use, modification, and
+redistribution of the markdown text content. Users are independently
+responsible for evaluating their specific use case against applicable
+laws and the target application's ToS. Contributors are required to
+flag any skill content that risks crossing these lines (see
+[CONTRIBUTING.md](CONTRIBUTING.md)).
 
 ## Soft guidance, not enforcement
 
