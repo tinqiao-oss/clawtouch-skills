@@ -11,6 +11,16 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+### Fixed — second-pass code audit (codex round 3)
+
+- **`wps-office.md` — `hid.key("ctrl+shift+plus")` was unexecutable.**
+  `clawtouch-mcp`'s `keycodes.py` did not recognize `plus` as a named
+  key, so executing the step raised `ValueError unknown key: 'plus'`.
+  Rewrote the step as `hid.key("ctrl+shift+=")` (the literal
+  punctuation works in all versions) and noted that `clawtouch-mcp`
+  now also accepts the worded aliases `ctrl+shift+plus` and
+  `ctrl+shift+equal` for forward compatibility.
+
 ### Compliance — second-pass audit (codex round 2)
 
 A follow-up codex audit on the first compliance pass surfaced one

@@ -46,7 +46,7 @@ environments** (where WPS is usually the system default for `.docx`).
 | Enter formula | `hid.type("=SUM(A1:A4)")` → `hid.key("enter")` |
 | Select column of active cell | `hid.key("ctrl+space")` |
 | Select row of active cell | `hid.key("shift+space")` |
-| Insert row above active row | `hid.key("ctrl+shift+plus")` opens dialog → arrow to "整行" → Enter |
+| Insert row above active row | `hid.key("ctrl+shift+=")` opens dialog → arrow to "整行" → Enter (also accepts `ctrl+shift+plus` / `ctrl+shift+equal` aliases) |
 | Next / previous sheet | `Ctrl+PgDn` / `Ctrl+PgUp` |
 | Filter toggle | `Ctrl+Shift+L` |
 
