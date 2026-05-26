@@ -5,6 +5,16 @@ DingTalk is one of the dominant B2B collaboration suites in China.
 Very little LLM training data — this skill bridges the gap for
 day-to-day office surfaces.
 
+> **Tested against**: DingTalk desktop **V7.x** on Windows 10/11
+> (zh-CN locale). Last verified 2026-05-26.
+>
+> ⚠️ DingTalk releases major UI revisions roughly yearly. If you are
+> on a substantially newer version (V8+) and the sidebar layout,
+> keyboard shortcuts, or menu paths described below don't match what
+> you see, the skill may be out of date — please open an issue at
+> [tinqiao-oss/clawtouch-skills](https://github.com/tinqiao-oss/clawtouch-skills/issues)
+> so we can refresh it.
+
 ## Scope
 
 This skill covers DingTalk's messaging, file sharing, docs, and

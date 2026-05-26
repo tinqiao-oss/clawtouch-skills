@@ -5,6 +5,15 @@ Feishu is the dominant B2B collaboration suite at Chinese tech
 companies. Its UI is mostly LLM-blind (much less training data than
 Slack or Teams), which is exactly why this skill exists.
 
+> **Tested against**: Feishu desktop **v7.x** (zh-CN) / Lark desktop
+> **v7.x** (en) on Windows 10/11 and macOS 12+. Last verified 2026-05-26.
+>
+> ⚠️ Feishu/Lark ship UI revisions every few months. If the sidebar,
+> shortcuts, or menu paths described below don't match what you see,
+> the skill may be out of date — please open an issue at
+> [tinqiao-oss/clawtouch-skills](https://github.com/tinqiao-oss/clawtouch-skills/issues)
+> so we can refresh it.
+
 ## When to use this skill
 
 The user is operating Feishu desktop (`Feishu.exe` on Windows,

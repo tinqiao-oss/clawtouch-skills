@@ -5,6 +5,15 @@ the dominant office suite in mainland China; the UI is similar to
 Microsoft Office but with non-trivial shortcut and menu-path
 differences that bite agents trained mostly on MS Office documentation.
 
+> **Tested against**: WPS Office **2024** (个人版 / 教育版) on
+> Windows 10/11 (zh-CN). Last verified 2026-05-26.
+>
+> ⚠️ WPS releases new major versions roughly yearly with ribbon and
+> shortcut adjustments. WPS 2019 / 2021 have noticeably different
+> menu paths in places. If a step doesn't match what you see, please
+> open an issue at
+> [tinqiao-oss/clawtouch-skills](https://github.com/tinqiao-oss/clawtouch-skills/issues).
+
 ## When to use this skill
 
 The user wants to operate WPS 文字 (Writer), WPS 表格 (Spreadsheets),
