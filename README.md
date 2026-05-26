@@ -57,6 +57,41 @@ PRs adding skills for other apps welcome — see [CONTRIBUTING.md](CONTRIBUTING.
 4. Issue the high-level task — the model uses the skill's knowledge
    to pick the right HID calls.
 
+## Scope — documentation, not content generation
+
+Skill files are **operator manuals written for an LLM**. They are
+markdown text documents only — no executable code, no AI model, no
+content-generation logic. The calling LLM agent is solely responsible
+for any text, image, audio, or video content it produces while
+following the skill, including compliance with any content-labeling
+or content-moderation obligations applicable in the agent's
+jurisdiction.
+
+## Acceptable use
+
+These skill files describe **legitimate** uses of the target
+applications — accessibility tooling, internal RPA on accounts the
+operator owns, QA / compatibility testing, personal automation. They
+are **not** intended to and do **not** describe:
+
+- Bypassing, evading, or interfering with any application's
+  anti-fraud, anti-abuse, rate-limiting, or risk-control measures.
+- Operating accounts the user does not lawfully own or have explicit
+  authorization to operate.
+- Activities prohibited by the target application's Terms of Service
+  in the user's jurisdiction (check the ToS before applying any
+  skill to a specific use case).
+- Activities that violate applicable law — including, but not limited
+  to, PRC *Anti-Unfair Competition Law* Art. 13 (as amended
+  2025-10-15) on improper acquisition of others' data, *Personal
+  Information Protection Law*, *Cybersecurity Law*, and equivalent
+  laws in other jurisdictions.
+
+Users are independently responsible for evaluating their specific use
+case against applicable laws and the target application's ToS.
+Contributors are required to flag any skill content that risks
+crossing these lines (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+
 ## Soft guidance, not enforcement
 
 Skills are **soft guidance** — the LLM still decides what to do, and
@@ -104,7 +139,17 @@ Windows / macOS / Linux desktops at the HID layer.
 
 ## License
 
-MIT © Tinqiao Technology (Beijing) Co., Ltd. See [LICENSE](LICENSE).
+MIT © Tinqiao Technology (Beijing) Co., Ltd. — see [LICENSE](LICENSE)
+(English, authoritative) and [LICENSE.zh-CN.md](LICENSE.zh-CN.md)
+(non-official Chinese translation, for reference).
+
+This repository contains no bundled third-party source code — see
+[NOTICE](NOTICE). Trademarks (ClawTouch, Tinqiao, and the
+third-party application marks named in skill files — WPS Office,
+Feishu / Lark, DingTalk) are covered separately in
+[TRADEMARKS.md](TRADEMARKS.md) — the MIT License does **not** grant
+any trademark rights and no third-party trademark owner has endorsed
+or sponsored this documentation.
 
 For commercial deployments at scale, enterprise support, or OEM
 hardware discussion: `support@tinqiao.com`.

@@ -11,6 +11,40 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+### Added
+
+- **`TRADEMARKS.md`** — bilingual (English + 简体中文) nominative
+  trademark notice. Critical for this repo because every skill file
+  is named after a specific third-party application
+  (WPS Office / 金山办公 — Kingsoft; Feishu / 飞书 / Lark — ByteDance;
+  DingTalk / 钉钉 — Alibaba). Explicit "no endorsement, no
+  sponsorship, no certification" disclaimer plus takedown / removal
+  email channel for rights holders. PRC Trademark Law Art. 59
+  nominative-fair-use grounded.
+- **`LICENSE.zh-CN.md`** — non-official Chinese translation of the
+  MIT License with explicit "English version prevails in case of
+  conflict" disclaimer; clarifies that "Software" in this repo
+  refers to the copyrighted markdown text content (not executable
+  code).
+- **`NOTICE`** — declares no bundled third-party source code; points
+  to `TRADEMARKS.md` for the trademark notice. Brings parity with
+  `clawtouch-hid` and `clawtouch-mcp` repos.
+- **README `## Scope — documentation, not content generation`
+  section** — explicit declaration that skill files are markdown
+  text only, contain no AI model or content-generation logic, and
+  that the calling LLM is solely responsible for any generated
+  content (including PRC *AI Generated Content Labeling Measure*
+  obligations effective 2025-09-01).
+- **README `## Acceptable use` section** — explicit prohibition on
+  using skills to bypass any application's anti-fraud / risk-control
+  / rate-limit measures, operate unauthorized accounts, or violate
+  applicable law; references PRC *Anti-Unfair Competition Law*
+  Art. 13 (as amended 2025-10-15).
+- **README License section** — added cross-links to
+  `LICENSE.zh-CN.md`, `NOTICE`, and `TRADEMARKS.md`; clarified that
+  no third-party trademark owner has endorsed or sponsored this
+  documentation.
+
 ## [0.1.0] — 2026-05-17 — First release
 
 ### Added

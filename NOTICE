@@ -1,0 +1,45 @@
+clawtouch-skills
+Copyright (c) 2026 Tinqiao Technology (Beijing) Co., Ltd.
+
+This product is licensed under the MIT License — see LICENSE for the
+full text and LICENSE.zh-CN.md for an unofficial Chinese translation.
+
+
+==============================================================================
+No bundled third-party source code
+==============================================================================
+
+clawtouch-skills consists entirely of original markdown documentation
+written by Tinqiao Technology contributors. No third-party source
+code, binaries, fonts, images, or other copyrighted material is
+bundled in this repository.
+
+Each skill file (`*.md`) is original prose authored from hands-on
+operation of the target application, not derived from any third
+party's documentation, tutorials, or training material.
+
+
+==============================================================================
+Third-party trademarks referenced in skill files
+==============================================================================
+
+Skill files describe the user interface of specific third-party
+applications by name. The trademarks WPS Office® (Kingsoft Office),
+Feishu™ / Lark™ (ByteDance), DingTalk™ (Alibaba), Claude™
+(Anthropic), and others remain the exclusive property of their
+respective owners and are used solely for descriptive, nominative
+purposes. See TRADEMARKS.md for the complete trademark notice and
+nominative-use disclaimer.
+
+No third-party trademark owner has endorsed, sponsored, certified,
+or partnered with Tinqiao Technology for the production of this
+documentation.
+
+
+==============================================================================
+Contributions
+==============================================================================
+
+Skill files contributed via pull requests are licensed under MIT by
+the contributor (see CONTRIBUTING.md). No CLA, no copyright
+assignment — contributor names remain attached to their commits.
