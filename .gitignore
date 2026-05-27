@@ -10,3 +10,21 @@ Thumbs.db
 # Local notes / scratch
 SCRATCH.md
 DRAFT-*.md
+
+# Python — sister repos clawtouch-mcp / clawtouch-hid have helper
+# scripts and pull these in. We're markdown-only today but match the
+# sibling .gitignore footprint so any future helper (link checker,
+# schema validator, lint) can't leak artefacts.
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtualenvs
+.venv/
+venv/
