@@ -34,19 +34,28 @@ LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
 
 ## 已有 skill
 
-| 文件 | 应用 | 覆盖 |
-|------|-----|------|
-| [`wps-office.md`](wps-office.md) | WPS Office (文字 / 表格 / 演示) | 常用编辑任务 + 跟 MS Office 的快捷键差异 |
-| [`feishu.md`](feishu.md) | 飞书 / Lark | IM、文档、表格、日历 |
-| [`dingtalk.md`](dingtalk.md) | 钉钉 | IM、文件、文档、日历 |
+每个 skill 在 `skills/<skill-name>/SKILL.md` 里 —— 单个 markdown 文件,
+顶部带 YAML frontmatter (`name` + `description`), 对齐
+[Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+和
+[GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills)
+约定, 任何兼容客户端都能发现并加载。
+
+| Skill | 应用 | 覆盖 |
+|-------|------|------|
+| [`skills/wps-office/SKILL.md`](skills/wps-office/SKILL.md) | WPS Office (文字 / 表格 / 演示) | 常用编辑任务 + 跟 MS Office 的快捷键差异 |
+| [`skills/feishu/SKILL.md`](skills/feishu/SKILL.md) | 飞书 / Lark | IM、文档、表格、日历 |
+| [`skills/dingtalk/SKILL.md`](skills/dingtalk/SKILL.md) | 钉钉 | IM、文件、文档、日历 |
 
 ## 怎么用
 
-1. 挑跟你要操控的应用对应的 skill 文件。
-2. Load 进你的 LLM context (system prompt / file attachment / skill
-   registry —— 看你用的客户端)。Claude Code / Cline / OpenClaw 等
-   的标准模式是把文件 drop 进 agent 的 skill 注册表, 或者塞进初始
-   system prompt。
+1. 挑跟你要操控的应用对应的 skill。
+2. Load 进你的 LLM context。
+   [Claude Code](https://docs.claude.com/en/docs/claude-code/skills) 把
+   `skills/<name>/` 整个目录放到 `~/.claude/skills/` (用户级) 或
+   `.claude/skills/` (项目级) 即可, Claude Code 通过 frontmatter 自动
+   发现。其他客户端 (Cline / Continue / OpenClaw / 自研 agent) 用
+   `SKILL.md` registry 工具安装, 或者把文件内容塞进初始 system prompt。
 3. 确认 [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp)
    连上了, `--screen WxH` 覆盖正确的显示器。
 4. 下高层级任务 —— 模型会用 skill 的局部知识挑对的 HID 调用。
@@ -98,10 +107,16 @@ ClawTouch 桌面端 (邮件咨询 `support@tinqiao.com`)。
 
 ## 命名规则
 
-`<app-name>.md`, 全小写 kebab-case。一个 app 一个文件。
+每个 skill 是 `skills/<skill-name>/` 目录, 里面有一个 `SKILL.md`。
+`<skill-name>` 全小写 kebab-case (如 `wps-office` / `feishu` /
+`dingtalk`), **必须跟 SKILL.md frontmatter 里的 `name:` 字段一致**。
 
-如果应用有差异很大的子产品 (Office 的 Word vs Excel), 拆成多份
-文件而不是一份大文件。
+一个目录一个 skill。如果应用有差异很大的子产品 (Office 的 Word vs
+Excel), 一份合订对 agent 加载太长, 拆成
+`skills/word/SKILL.md` / `skills/excel/SKILL.md`, 不要一份大文件硬塞。
+
+中文应用的目录名用罗马字 (`wps-office` / `feishu` / `dingtalk`),
+中文名字放在 SKILL.md 标题和首句里。
 
 ## 姊妹仓
 
@@ -110,6 +125,33 @@ ClawTouch 桌面端 (邮件咨询 `support@tinqiao.com`)。
 | [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp) | MCP server, 暴露 HID 工具, 驱动实际硬件 |
 | [`clawtouch-hid`](https://github.com/tinqiao-oss/clawtouch-hid) | Pico 2 固件 + 冻结 v1.0 线协议 |
 | (本仓) | 给应用做的 markdown skill 文件 |
+
+## 相关工作
+
+agent skill 的格式生态正在向"带 YAML frontmatter 的 markdown 包"收拢。
+`clawtouch-skills` 采用
+[Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+的 `skills/<skill-name>/SKILL.md` + `name` / `description` frontmatter
+结构, 所以本仓的 skill 不用转换就能被任何兼容客户端加载。
+
+* **[Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)** —— 我们遵循的格式。
+* **[GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills)** ——
+  同一套 frontmatter 约定, 面向 Copilot CLI 和云端 agent。
+* 社区 CLI 比如
+  [`kcchien/skills-cli`](https://github.com/kcchien/skills-cli)
+  把 `SKILL.md` 包安装到 Claude / Cline / Continue 这些 agent registry 里。
+
+ClawTouch skill 的差异:
+
+* **HID 模式 skill, 不是 API skill。** 大多数公开 skill 包教 LLM 调服务 API
+  ([OpenClaw `feishu-doc`](https://github.com/openclaw/skills/tree/main/skills/autogame-17/feishu-doc)、
+  GitHub / Slack / Notion 连接器)。ClawTouch skill 教 LLM 怎么通过模拟键鼠
+  操作那些应用的 **UI** —— 在没 API 可用时这是唯一路径 (WPS Office 桌面、
+  飞书 / 钉钉原生客户端、没有 REST 接口的企业内部工具) —— 通过
+  [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp) 落地。
+* **聚焦中文市场应用。** LLM 训练数据对 Word / Slack / Notion / Google Docs
+  覆盖很好, 对 WPS / 飞书 / 钉钉则稀薄得多。本仓 skill 就瞄准这块价值
+  最高的盲区。
 
 ## 参与贡献
 

@@ -38,20 +38,29 @@ PRs adding skills for other apps welcome — see [CONTRIBUTING.md](CONTRIBUTING.
 
 ## Available skills
 
-| File | App | Coverage |
-|------|-----|----------|
-| [`wps-office.md`](wps-office.md) | WPS Office (文字 / 表格 / 演示) | Common editing tasks; shortcut differences from MS Office |
-| [`feishu.md`](feishu.md) | Feishu / Lark (飞书) | IM, docs, sheets, calendar |
-| [`dingtalk.md`](dingtalk.md) | DingTalk (钉钉) | IM, file sharing, docs, calendar |
+Each skill lives in `skills/<skill-name>/SKILL.md` — a single markdown
+file with a YAML frontmatter block (`name` + `description`) at the top,
+matching the [Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+and [GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills)
+conventions, so any compatible client can discover them.
+
+| Skill | App | Coverage |
+|-------|-----|----------|
+| [`skills/wps-office/SKILL.md`](skills/wps-office/SKILL.md) | WPS Office (文字 / 表格 / 演示) | Common editing tasks; shortcut differences from MS Office |
+| [`skills/feishu/SKILL.md`](skills/feishu/SKILL.md) | Feishu / Lark (飞书) | IM, docs, sheets, calendar |
+| [`skills/dingtalk/SKILL.md`](skills/dingtalk/SKILL.md) | DingTalk (钉钉) | IM, file sharing, docs, calendar |
 
 ## How to use
 
 1. Pick the skill matching the application you're about to drive.
-2. Load it into your LLM context (system prompt, file attachment,
-   skill / agent registry — depends on your client). For Claude Code
-   / Cline / OpenClaw etc., the standard pattern is to drop the file
-   into the agent's skill registry or include it in the initial
-   system prompt.
+2. Load it into your LLM context. For
+   [Claude Code](https://docs.claude.com/en/docs/claude-code/skills),
+   drop the `skills/<name>/` directory under
+   `~/.claude/skills/` (user-scoped) or `.claude/skills/`
+   (project-scoped) and Claude Code will auto-discover it via the
+   frontmatter. For other clients (Cline, Continue, OpenClaw, custom
+   agents), either install via a `SKILL.md` registry tool or include
+   the file contents in the initial system prompt.
 3. Make sure [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp)
    is connected and `--screen WxH` covers the right monitor.
 4. Issue the high-level task — the model uses the skill's knowledge
@@ -117,10 +126,19 @@ closed-source ClawTouch desktop product (contact `support@tinqiao.com`).
 
 ## Naming convention
 
-`<app-name>.md`, all-lowercase, kebab-case. One file per app.
+Each skill is a directory at `skills/<skill-name>/` containing a
+`SKILL.md` file. `<skill-name>` is all-lowercase kebab-case (e.g.
+`wps-office`, `feishu`, `dingtalk`) and **must match the `name:` field
+in the SKILL.md frontmatter**.
 
-If an app has very different sub-products (Office's Word vs Excel),
-split into separate files rather than one giant file.
+One skill per directory. If an app has very different sub-products
+(Office's Word vs Excel) where one bundled file would be too long for
+useful agent loading, split into `skills/word/SKILL.md` /
+`skills/excel/SKILL.md` rather than one giant skill.
+
+For Chinese-localized apps, the directory name uses the romanized name
+(`wps-office`, `feishu`, `dingtalk`); the Chinese name goes in the
+SKILL.md title and first sentence.
 
 ## Companion repositories
 
@@ -129,6 +147,39 @@ split into separate files rather than one giant file.
 | [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp) | MCP server exposing HID tools — drives the actual hardware |
 | [`clawtouch-hid`](https://github.com/tinqiao-oss/clawtouch-hid) | Pico 2 firmware + frozen v1.0 wire protocol |
 | (this repo) | Markdown skill files for app-specific guidance |
+
+## Related work
+
+The agent-skill format ecosystem is converging on YAML-frontmatter
+markdown bundles. `clawtouch-skills` adopts the
+[Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+layout — `skills/<skill-name>/SKILL.md` with `name` / `description`
+frontmatter — so skills here can be loaded by any compatible client
+without conversion.
+
+* **[Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)** —
+  the format we follow.
+* **[GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills)** —
+  same frontmatter convention; targets Copilot CLI and cloud agents.
+* Community CLIs such as
+  [`kcchien/skills-cli`](https://github.com/kcchien/skills-cli) install
+  `SKILL.md` bundles into Claude / Cline / Continue registries.
+
+What's *different* about ClawTouch skills:
+
+* **HID-mode skills, not API skills.** Most published skill packages
+  teach an LLM to call a service API
+  ([OpenClaw `feishu-doc`](https://github.com/openclaw/skills/tree/main/skills/autogame-17/feishu-doc),
+  GitHub / Slack / Notion connectors). ClawTouch skills teach the LLM
+  how to drive the **UI** of those apps via simulated keyboard / mouse —
+  the path that's available when there is no API (WPS Office desktop,
+  Feishu / DingTalk native clients, internal enterprise tools without
+  REST endpoints) — through
+  [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp).
+* **Chinese-market app focus.** LLMs are well-trained on Word / Slack /
+  Notion / Google Docs but have far less ground truth on WPS / Feishu /
+  DingTalk. These skills target the gap where explicit operator
+  knowledge has the highest marginal value.
 
 ## Contributing
 

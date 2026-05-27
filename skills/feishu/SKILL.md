@@ -1,3 +1,8 @@
+---
+name: feishu
+description: Operate the Feishu / Lark desktop client via simulated keyboard and mouse through clawtouch-mcp — messaging, docs, sheets, and calendar workflows, with the menu paths and shortcuts LLMs typically get wrong on this Chinese-market suite. Tested against Feishu/Lark v7.x on Windows and macOS. Load when the user wants to message, edit docs/sheets, or manage calendar events in Feishu or Lark.
+---
+
 # Skill: Feishu / Lark (飞书)
 
 For LLM agents driving **Feishu desktop** through `clawtouch-mcp`.

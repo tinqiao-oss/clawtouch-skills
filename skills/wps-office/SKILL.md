@@ -1,3 +1,8 @@
+---
+name: wps-office
+description: Operate WPS Office desktop suite (WPS 文字 / 表格 / 演示) via simulated keyboard and mouse through clawtouch-mcp — exact menu paths, shortcut differences from MS Office, and cloud-save dialog handling. Tested against WPS Office 2024 on Windows. Load when the user wants to edit, read, or automate WPS document / spreadsheet / presentation files.
+---
+
 # Skill: WPS Office (文字 / 表格 / 演示)
 
 For LLM agents driving **WPS Office** through `clawtouch-mcp`. WPS is

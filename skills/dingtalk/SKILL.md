@@ -1,3 +1,8 @@
+---
+name: dingtalk
+description: Operate the DingTalk desktop client via simulated keyboard and mouse through clawtouch-mcp — messaging, file sharing, docs, and calendar workflows. Tested against DingTalk V7.x on Windows. Explicitly excludes attendance / check-in flows (打卡). Load when the user wants to message, share files, edit docs, or manage calendar events in DingTalk.
+---
+
 # Skill: DingTalk (钉钉)
 
 For LLM agents driving **DingTalk desktop** through `clawtouch-mcp`.
@@ -66,7 +71,7 @@ Default to `Ctrl+Enter`; switch only after observing a misfire.
 
 Similar in shape to Feishu's — block-based docs (`/` opens block
 menu, markdown shortcuts work) and standard calendar grid. See the
-[Feishu skill](feishu.md) for common patterns.
+[Feishu skill](../feishu/SKILL.md) for common patterns.
 
 ## Known gotchas
 

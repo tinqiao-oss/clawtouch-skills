@@ -9,11 +9,13 @@ an operator's manual for one application.
 ## What kind of PRs we welcome
 
 - **New skill** for an application not yet covered. One PR = one new
-  `.md` file. See [naming convention](#naming-convention).
+  `skills/<skill-name>/SKILL.md` (plus the enclosing directory). See
+  [naming convention](#naming-convention).
 - **Updates / corrections** to an existing skill — UI drifts, new
   shortcuts, version-specific differences you ran into.
 - **Translations** — non-English mirror of an existing skill (a
-  `wps-office.zh-CN.md` next to `wps-office.md`, or vice versa).
+  `SKILL.zh-CN.md` next to `SKILL.md` inside the same skill directory,
+  or vice versa).
 - **Bug fixes** in workflow tables — a step sequence that doesn't
   actually work the way it's written.
 
@@ -31,9 +33,19 @@ an operator's manual for one application.
 
 ## Skill file structure
 
-Each skill should have these sections, in this order:
+Each `skills/<skill-name>/SKILL.md` starts with a YAML frontmatter
+block (Anthropic Claude Skills / GitHub Copilot Agent Skills
+convention), then the operator-manual body:
 
 ````markdown
+---
+name: <skill-name>
+description: One paragraph the LLM reads to decide whether to load this
+  skill. State the app, the kinds of tasks covered, the tested
+  versions, and any explicit non-coverage. Be specific — generic
+  descriptions waste agent context.
+---
+
 # Skill: <app name>
 
 For LLM agents driving <app name> through `clawtouch-mcp`. Brief
@@ -72,16 +84,25 @@ instead of trusting this skill — custom enterprise integrations,
 real-time UIs, admin consoles.
 ````
 
+The `name:` field **must** match the enclosing directory name exactly
+(both kebab-case, e.g. directory `skills/wps-office/` ⇔ `name: wps-office`).
+This is what client-side skill registries use to address the skill.
+
 ## Naming convention
 
-`<app-name>.md`, all-lowercase, kebab-case. One file per app.
+Each skill is a directory at `skills/<skill-name>/` containing a
+`SKILL.md`. `<skill-name>` is all-lowercase kebab-case, and the
+SKILL.md `name:` frontmatter field **must match the directory name
+exactly**.
 
-If an app has very different sub-products (Office's Word vs Excel),
-split into `word.md` / `excel.md` etc. instead of one giant file.
+One skill per directory. If an app has very different sub-products
+(Office's Word vs Excel) where one bundled file would be too long for
+useful agent loading, split into `skills/word/SKILL.md` /
+`skills/excel/SKILL.md` rather than one giant skill.
 
-For Chinese-localized apps, the file name uses the romanized name
-(`wps-office.md`, `feishu.md`, `dingtalk.md`); the Chinese name
-goes in the title and first sentence.
+For Chinese-localized apps, the directory name uses the romanized
+name (`wps-office`, `feishu`, `dingtalk`); the Chinese name goes in
+the SKILL.md title and first sentence.
 
 ## PR checklist
 

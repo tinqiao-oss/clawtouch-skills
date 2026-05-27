@@ -11,6 +11,40 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+### Changed — adopt standard SKILL.md layout with YAML frontmatter
+
+Skills moved from flat root-level files into
+`skills/<skill-name>/SKILL.md` directories, with `name` + `description`
+YAML frontmatter at the top of each file. This matches the
+[Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+and [GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills)
+conventions, so any compatible client (Claude Code, Cline, skill CLIs,
+etc.) can discover skills here without conversion.
+
+File moves (git-mv, history preserved):
+
+- `wps-office.md` → `skills/wps-office/SKILL.md`
+- `feishu.md` → `skills/feishu/SKILL.md`
+- `dingtalk.md` → `skills/dingtalk/SKILL.md`
+
+`README.md` / `README.zh-CN.md` / `CONTRIBUTING.md` updated to reflect
+the new layout, link targets, and naming rule (directory name **must**
+match the SKILL.md `name:` field).
+
+No skill *content* changed — every workflow table, gotcha note, and
+shortcut sequence is identical to before. Adopters who pinned to a
+specific commit must update paths; this is the only breaking change.
+
+### Added — Related Work section in README
+
+New `## Related work` section positions this repo against
+[Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview),
+[GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills),
+[`kcchien/skills-cli`](https://github.com/kcchien/skills-cli), and
+[OpenClaw](https://github.com/openclaw/skills) — and states the two
+ClawTouch differentiators: HID-mode (not API) skills, and
+Chinese-market app focus.
+
 ### Fixed — second-pass code audit (codex round 3)
 
 - **`wps-office.md` — `hid.key("ctrl+shift+plus")` was unexecutable.**
@@ -88,9 +122,9 @@ the audit do not apply here):
 
 - 3 starter skills covering Chinese-market apps where LLM training
   data is thinnest:
-  - [`wps-office.md`](wps-office.md) — WPS Office (文字 / 表格 / 演示)
-  - [`feishu.md`](feishu.md) — Feishu / Lark (飞书)
-  - [`dingtalk.md`](dingtalk.md) — DingTalk (钉钉)
+  - [`wps-office.md`](skills/wps-office/SKILL.md) — WPS Office (文字 / 表格 / 演示)
+  - [`feishu.md`](skills/feishu/SKILL.md) — Feishu / Lark (飞书)
+  - [`dingtalk.md`](skills/dingtalk/SKILL.md) — DingTalk (钉钉)
 - Repository scaffolding: README (English + 简体中文), LICENSE (MIT),
   CONTRIBUTING, SECURITY, CHANGELOG, .github/ (CI + issue templates).
 

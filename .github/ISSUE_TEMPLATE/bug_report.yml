@@ -12,7 +12,7 @@ body:
     id: skill
     attributes:
       label: Which skill?
-      placeholder: wps-office.md / feishu.md / dingtalk.md
+      placeholder: skills/wps-office / skills/feishu / skills/dingtalk
     validations:
       required: true
 
