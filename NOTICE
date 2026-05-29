@@ -24,12 +24,16 @@ Third-party trademarks referenced in skill files
 ==============================================================================
 
 Skill files describe the user interface of specific third-party
-applications by name. The trademarks WPS Office® (Kingsoft Office),
-Feishu™ / Lark™ (ByteDance), DingTalk™ (Alibaba), Claude™
-(Anthropic), and others remain the exclusive property of their
-respective owners and are used solely for descriptive, nominative
-purposes. See TRADEMARKS.md for the complete trademark notice and
-nominative-use disclaimer.
+applications by name. WPS Office (Kingsoft Office), Feishu / Lark
+(ByteDance), DingTalk (Alibaba), Claude (Anthropic), and other product
+names referenced in skill files are trademarks or registered trademarks
+of their respective owners; the maintainers of this repository have
+not independently verified the current registration status of each
+mark and use them solely for descriptive, nominative purposes.
+Downstream redistributors compiling for jurisdictions where
+trademark-status disclosure matters should verify with the relevant
+trademark office. See TRADEMARKS.md for the complete nominative-use
+disclaimer.
 
 No third-party trademark owner has endorsed, sponsored, certified,
 or partnered with Tinqiao Technology for the production of this

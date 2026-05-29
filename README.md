@@ -62,7 +62,12 @@ conventions, so any compatible client can discover them.
    agents), either install via a `SKILL.md` registry tool or include
    the file contents in the initial system prompt.
 3. Make sure [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp)
-   is connected and `--screen WxH` covers the right monitor.
+   is connected and `--screen WxH` covers the right monitor. Skills
+   that depend on drag or held-key gestures (`hid.drag`,
+   `hid.mouse_button_down/up`, `hid.key_press/release`, `hid.hold_key`)
+   require `clawtouch-mcp v0.3.0+` for protocol v1.1 support; skills
+   using only `hid.click`, `hid.type`, `hid.scroll`, `hid.key` etc.
+   work with any release.
 4. Issue the high-level task — the model uses the skill's knowledge
    to pick the right HID calls.
 
@@ -145,7 +150,7 @@ SKILL.md title and first sentence.
 | Repo | Role |
 |------|------|
 | [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp) | MCP server exposing HID tools — drives the actual hardware |
-| [`clawtouch-hid`](https://github.com/tinqiao-oss/clawtouch-hid) | Pico 2 firmware + frozen v1.0 wire protocol |
+| [`clawtouch-hid`](https://github.com/tinqiao-oss/clawtouch-hid) | Pico 2 firmware + v1.1 wire protocol (v1.0 baseline frozen) |
 | (this repo) | Markdown skill files for app-specific guidance |
 
 ## Related work

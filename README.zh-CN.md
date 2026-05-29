@@ -57,7 +57,11 @@ LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
    发现。其他客户端 (Cline / Continue / OpenClaw / 自研 agent) 用
    `SKILL.md` registry 工具安装, 或者把文件内容塞进初始 system prompt。
 3. 确认 [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp)
-   连上了, `--screen WxH` 覆盖正确的显示器。
+   连上了, `--screen WxH` 覆盖正确的显示器。如果 skill 用到拖拽或长按
+   等手势 (`hid.drag` / `hid.mouse_button_down/up` / `hid.key_press/release`
+   / `hid.hold_key`), 需要 `clawtouch-mcp v0.3.0+` (协议 v1.1); 只用
+   `hid.click` / `hid.type` / `hid.scroll` / `hid.key` 等基础工具的
+   skill 任何版本都能跑。
 4. 下高层级任务 —— 模型会用 skill 的局部知识挑对的 HID 调用。
 
 ## 适用范围 —— 文档而非内容生成
@@ -123,7 +127,7 @@ Excel), 一份合订对 agent 加载太长, 拆成
 | 仓 | 角色 |
 |----|------|
 | [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp) | MCP server, 暴露 HID 工具, 驱动实际硬件 |
-| [`clawtouch-hid`](https://github.com/tinqiao-oss/clawtouch-hid) | Pico 2 固件 + 冻结 v1.0 线协议 |
+| [`clawtouch-hid`](https://github.com/tinqiao-oss/clawtouch-hid) | Pico 2 固件 + v1.1 线协议 (v1.0 baseline 冻结) |
 | (本仓) | 给应用做的 markdown skill 文件 |
 
 ## 相关工作
