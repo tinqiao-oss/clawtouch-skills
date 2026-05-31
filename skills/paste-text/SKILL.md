@@ -33,12 +33,22 @@ composition, no candidate picking, no layout translation.
 **Step 1 — write the text to the system clipboard.** This is an ordinary
 OS command run from your own shell, *not* an HID call:
 
-| OS | Command |
-|----|---------|
-| macOS | `printf '%s' '你好，ClawTouch！' \| pbcopy` |
-| Windows (PowerShell) | `Set-Clipboard '你好，ClawTouch！'`  (encoding-safe; do **not** pipe to `clip` — it corrupts non-ASCII) |
-| Linux (X11) | `printf '%s' '...' \| xclip -selection clipboard` |
-| Linux (Wayland) | `printf '%s' '...' \| wl-copy` |
+- **macOS:**
+  ```bash
+  printf '%s' '你好，ClawTouch！' | pbcopy
+  ```
+- **Windows (PowerShell)** — encoding-safe; do **not** pipe to `clip`, it corrupts non-ASCII:
+  ```powershell
+  Set-Clipboard '你好，ClawTouch！'
+  ```
+- **Linux (X11):**
+  ```bash
+  printf '%s' '...' | xclip -selection clipboard
+  ```
+- **Linux (Wayland):**
+  ```bash
+  printf '%s' '...' | wl-copy
+  ```
 
 > These commands deliberately add **no trailing newline**: use `printf '%s'`
 > (not `echo`, which appends `\n`) on macOS/Linux; `Set-Clipboard '...'` is
