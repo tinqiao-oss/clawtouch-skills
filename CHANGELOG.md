@@ -11,6 +11,24 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+### Fixed — accuracy & CI (pre-publish sweep)
+
+- **WPS Office**: replaced the unverified `hid.key("alt+s")` "opens Insert
+  menu" step — the ribbon KeyTip letter for 插入 varies by WPS
+  version/locale, so the skill now says to read the on-screen KeyTip or
+  click the ribbon tab.
+- **DingTalk**: the Docs/Calendar section now states explicitly that those
+  steps are assumed-from-Feishu and **not independently verified** on
+  DingTalk (only messaging is); the frontmatter description was softened to
+  match.
+- **CI**: added a check that every `hid.key("…")` shorthand in a SKILL.md
+  resolves against the clawtouch-mcp keycode vocabulary — guards the
+  `plus`-bug class where a non-resolvable shorthand fails at `tools/call`.
+- Commercial-inquiry contact link switched from a `mailto:` (which GitHub
+  does not render in `config.yml`) to the website; corrected the CHANGELOG
+  origin note (the `examples/skills/` subdirectory was removed after the
+  move-out).
+
 ### Changed — adopt standard SKILL.md layout with YAML frontmatter
 
 Skills moved from flat root-level files into
@@ -130,9 +148,10 @@ the audit do not apply here):
 
 ### Origin
 
-Skills initially lived in
-[`clawtouch-mcp/examples/skills/`](https://github.com/tinqiao-oss/clawtouch-mcp/tree/master/examples)
-as a subdirectory. Promoted to a standalone repository on 2026-05-17 once
+Skills initially lived as a `skills/` subdirectory under
+[`clawtouch-mcp/examples/`](https://github.com/tinqiao-oss/clawtouch-mcp/tree/master/examples)
+(that subdirectory was removed when they moved out). Promoted to a
+standalone repository on 2026-05-17 once
 the "skill as a soft-guidance layer alongside HID primitives" pattern
 was confirmed worth its own release cadence + contribution flow.
 

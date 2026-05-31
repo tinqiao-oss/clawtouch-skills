@@ -1,6 +1,6 @@
 ---
 name: dingtalk
-description: Operate the DingTalk desktop client via simulated keyboard and mouse through clawtouch-mcp — messaging, file sharing, docs, and calendar workflows. Tested against DingTalk V7.x on Windows. Explicitly excludes attendance / check-in flows (打卡). Load when the user wants to message, share files, edit docs, or manage calendar events in DingTalk.
+description: Operate the DingTalk desktop client via simulated keyboard and mouse through clawtouch-mcp — messaging and file sharing (verified), plus docs/calendar surfaces that reuse the Feishu skill's patterns (not independently verified on DingTalk). Tested against DingTalk V7.x on Windows. Explicitly excludes attendance / check-in flows (打卡). Load when the user wants to message, share files, edit docs, or manage calendar events in DingTalk.
 ---
 
 # Skill: DingTalk (钉钉)
@@ -69,9 +69,13 @@ Default to `Ctrl+Enter`; switch only after observing a misfire.
 
 ## Docs and Calendar
 
-Similar in shape to Feishu's — block-based docs (`/` opens block
-menu, markdown shortcuts work) and standard calendar grid. See the
-[Feishu skill](../feishu/SKILL.md) for common patterns.
+DingTalk's docs and calendar are **assumed** to share Feishu's shape —
+block-based docs (`/` opens the block menu, markdown shortcuts) and a
+standard calendar grid — but the DingTalk-specific menu paths here are
+**not independently verified** (only the messaging section above was).
+Use the [Feishu skill](../feishu/SKILL.md) as the starting point and fall
+back to screenshot-based reasoning if the menus differ. Contributions with
+verified DingTalk Docs/Calendar steps are welcome.
 
 ## Known gotchas
 

@@ -40,7 +40,7 @@ environments** (where WPS is usually the system default for `.docx`).
 
 | Task | Step sequence |
 |------|---------------|
-| Insert table | `hid.key("alt+s")` opens Insert menu → arrow + Enter to "表格" → set rows/cols |
+| Insert table | Press `Alt` to show ribbon KeyTips, then the letter over **插入 (Insert)** — it varies by WPS version/locale, so read it on screen rather than assuming, or click the 插入 ribbon tab → "表格" → set rows/cols |
 | Bold selected text | Select first (e.g. `hid.key("ctrl+shift+right")` repeatedly), then `hid.key("ctrl+b")` |
 | Find / replace | `hid.key("ctrl+h")` |
 | Go to page | `hid.key("ctrl+g")` opens "定位" dialog → type page number → Enter |

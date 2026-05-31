@@ -72,6 +72,54 @@ jobs:
           fi
           echo "OK — no prohibited terms in skill files"
 
+      - name: hid.key(...) shorthand resolves against the MCP keycode vocabulary
+        run: |
+          python3 - <<'PY'
+          import re, sys, pathlib
+          # Vendored from clawtouch-mcp: protocol.MODIFIER_NAME_MAP keys +
+          # keycodes._KEY_NAME_TO_HID names. Keep in sync if the MCP parser's
+          # vocabulary changes. Guards the codex-round-3 "plus" bug class — a
+          # SKILL.md hid.key("...") shorthand the server can't resolve raises
+          # ValueError at tools/call time and fails the agent step.
+          MODIFIERS = {"ctrl", "control", "shift", "alt", "gui", "win", "cmd"}
+          NAMED = {
+              "enter", "return", "escape", "esc", "backspace", "delete", "tab",
+              "space", "up", "down", "left", "right", "home", "end", "pageup",
+              "pagedown", "insert", "plus", "equal", "equals", "minus", "hyphen",
+              "dash", "comma", "period", "dot", "slash", "backslash", "semicolon",
+              "apostrophe", "quote", "grave", "backtick", "tilde", "leftbracket",
+              "rightbracket",
+          } | {f"f{i}" for i in range(1, 13)}
+
+          def resolves(shorthand: str) -> bool:
+              # Mirrors server._tool_key: split modifier prefix only when every
+              # "+"-separated head token is a known modifier; then the tail must
+              # resolve via bridge.key_combo (named key, any case, or single char).
+              key_str = shorthand
+              if "+" in key_str and len(key_str) > 1:
+                  parts = key_str.split("+")
+                  head, tail = parts[:-1], parts[-1]
+                  if tail and all(p.lower() in MODIFIERS for p in head):
+                      key_str = tail
+              return len(key_str) == 1 or key_str.lower() in NAMED
+
+          pat = re.compile(r'hid\.key\(["\']([^"\']*)["\']\)')
+          errors = []
+          for p in sorted(pathlib.Path("skills").glob("*/SKILL.md")):
+              for m in pat.finditer(p.read_text(encoding="utf-8")):
+                  sc = m.group(1)
+                  if not resolves(sc):
+                      errors.append(
+                          f'{p}: hid.key("{sc}") does not resolve '
+                          f"(unknown key name or non-modifier prefix)"
+                      )
+          if errors:
+              for e in errors:
+                  print(f"::error::{e}")
+              sys.exit(1)
+          print("OK — every hid.key(...) shorthand resolves against the keycode vocabulary")
+          PY
+
       - name: Broken relative-link sniff (SKILL.md only, non-blocking)
         continue-on-error: true
         run: |
