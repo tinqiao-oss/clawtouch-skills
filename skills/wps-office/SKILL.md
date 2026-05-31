@@ -90,9 +90,11 @@ environments** (where WPS is usually the system default for `.docx`).
 - **Floating selection toolbar**: selecting text triggers a floating
   contextual toolbar that intercepts mouse clicks. Move cursor away
   (`hid.move` to a safe area) before clicking elsewhere.
-- **Mixed Chinese / English typing**: WPS doesn't switch IME for you.
-  Make sure the host IME is in the right state before `hid.type` for
-  literal text; for shortcuts (`Ctrl+X` etc.) IME doesn't matter.
+- **Mixed Chinese / English typing**: WPS doesn't switch IME for you, and
+  `hid.type` can't produce Chinese at all through an active IME. For any
+  literal Chinese / non-ASCII text, paste it from the clipboard instead —
+  see the [paste-text skill](../paste-text/SKILL.md). For shortcuts
+  (`Ctrl+X` etc.) the IME doesn't matter.
 
 ## When this skill doesn't help
 

@@ -11,7 +11,7 @@
 🌐 **[clawtouch.cn](https://clawtouch.cn)** — official site for hardware, docs, and commercial inquiries.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Skills: 3](https://img.shields.io/badge/skills-3-blue.svg)](#available-skills)
+[![Skills: 4](https://img.shields.io/badge/skills-4-blue.svg)](#available-skills)
 [![Commercial: clawtouch.cn](https://img.shields.io/badge/commercial-clawtouch.cn-orange.svg)](https://clawtouch.cn)
 
 ---
@@ -34,6 +34,9 @@ DingTalk). The skills here cover the second group, where the delta
 between "LLM guesses" and "actual UI" is widest — and the value of
 a skill file is highest.
 
+Most skills are per-app operator manuals; a few are **cross-cutting
+techniques** (e.g. reliable text entry) that apply across all of them.
+
 PRs adding skills for other apps welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Available skills
@@ -49,6 +52,7 @@ conventions, so any compatible client can discover them.
 | [`skills/wps-office/SKILL.md`](skills/wps-office/SKILL.md) | WPS Office (文字 / 表格 / 演示) | Common editing tasks; shortcut differences from MS Office |
 | [`skills/feishu/SKILL.md`](skills/feishu/SKILL.md) | Feishu / Lark (飞书) | IM, docs, sheets, calendar |
 | [`skills/dingtalk/SKILL.md`](skills/dingtalk/SKILL.md) | DingTalk (钉钉) | IM, file sharing, docs, calendar |
+| [`skills/paste-text/SKILL.md`](skills/paste-text/SKILL.md) | All apps (technique) | Reliable non-ASCII / Chinese text entry via clipboard paste (works around IME & keyboard-layout issues) |
 
 ## How to use
 

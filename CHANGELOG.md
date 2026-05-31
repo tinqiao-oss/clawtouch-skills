@@ -11,6 +11,16 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+### Added — `paste-text` skill (reliable non-ASCII / Chinese text entry)
+
+A cross-cutting technique skill (not app-specific): enter literal text —
+especially Chinese, emoji, and punctuation — by writing it to the system
+clipboard and pasting (`hid.key("cmd+v")` / `"ctrl+v"`) instead of
+`hid.type`, which sends raw US-layout keycodes and cannot produce
+non-ASCII through an active IME. Includes per-OS clipboard commands, a
+`hid.type`-vs-paste decision table, and gotchas (clipboard clobber, paste
+timing, newline-submits). The WPS Office skill's IME note now points here.
+
 ### Fixed — accuracy & CI (pre-publish sweep)
 
 - **WPS Office**: replaced the unverified `hid.key("alt+s")` "opens Insert

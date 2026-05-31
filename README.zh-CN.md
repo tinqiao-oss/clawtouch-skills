@@ -11,7 +11,7 @@
 🌐 **[clawtouch.cn](https://clawtouch.cn)** — 官网, 硬件 / 文档 / 商务咨询。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Skills: 3](https://img.shields.io/badge/skills-3-blue.svg)](#已有-skill)
+[![Skills: 4](https://img.shields.io/badge/skills-4-blue.svg)](#已有-skill)
 [![Commercial: clawtouch.cn](https://img.shields.io/badge/commercial-clawtouch.cn-orange.svg)](https://clawtouch.cn)
 
 ---
@@ -30,6 +30,8 @@ LLM 训练数据偏 US/EN 软件 (Word / Excel / Photoshop 等), 国内
 软件 (WPS / 飞书 / 钉钉) 的训练数据明显少很多。本仓覆盖的是后者 ——
 LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
 
+多数 skill 是按应用写的操作手册;少数是**跨应用的通用技巧** (如可靠的文本输入), 对所有应用都适用。
+
 欢迎 PR 加新应用的 skill —— 见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 已有 skill
@@ -46,6 +48,7 @@ LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
 | [`skills/wps-office/SKILL.md`](skills/wps-office/SKILL.md) | WPS Office (文字 / 表格 / 演示) | 常用编辑任务 + 跟 MS Office 的快捷键差异 |
 | [`skills/feishu/SKILL.md`](skills/feishu/SKILL.md) | 飞书 / Lark | IM、文档、表格、日历 |
 | [`skills/dingtalk/SKILL.md`](skills/dingtalk/SKILL.md) | 钉钉 | IM、文件、文档、日历 |
+| [`skills/paste-text/SKILL.md`](skills/paste-text/SKILL.md) | 全部应用 (通用技巧) | 非 ASCII / 中文文本经剪贴板粘贴可靠输入 (绕开输入法 & 键盘布局问题) |
 
 ## 怎么用
 
