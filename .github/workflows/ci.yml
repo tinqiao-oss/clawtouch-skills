@@ -11,41 +11,80 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: List markdown files
+      - name: List skill files
         run: |
-          ls -la *.md
-          echo ""
-          echo "Skill files:"
-          ls *.md 2>/dev/null | grep -v -E '^(README|CHANGELOG|CONTRIBUTING|SECURITY)' || echo "  (none yet)"
+          echo "Discovered SKILL.md files:"
+          find skills -name SKILL.md -print | sort || echo "  (none found)"
+
+      - name: Validate skill frontmatter (name / description / dir-name match)
+        run: |
+          python3 - <<'PY'
+          import sys, pathlib
+          skills = sorted(pathlib.Path("skills").glob("*/SKILL.md"))
+          if not skills:
+              print("::error::No skills/*/SKILL.md found — did the layout change?")
+              sys.exit(1)
+          errors = []
+          for p in skills:
+              text = p.read_text(encoding="utf-8")
+              if not text.startswith("---"):
+                  errors.append(f"{p}: missing YAML frontmatter (no leading ---)")
+                  continue
+              parts = text.split("---", 2)
+              if len(parts) < 3:
+                  errors.append(f"{p}: malformed frontmatter (need opening + closing ---)")
+                  continue
+              meta = {}
+              for line in parts[1].splitlines():
+                  if ":" in line and not line.lstrip().startswith("#"):
+                      k, _, v = line.partition(":")
+                      meta[k.strip()] = v.strip()
+              name, desc = meta.get("name", ""), meta.get("description", "")
+              dirname = p.parent.name
+              if not name:
+                  errors.append(f"{p}: frontmatter missing 'name'")
+              if not desc:
+                  errors.append(f"{p}: frontmatter missing 'description'")
+              if name and name != dirname:
+                  errors.append(f"{p}: frontmatter name '{name}' != directory '{dirname}'")
+              print(f"  OK  {p}  (name={name or '?'})")
+          if errors:
+              for e in errors:
+                  print(f"::error::{e}")
+              sys.exit(1)
+          print(f"\n{len(skills)} skill file(s) validated.")
+          PY
 
       - name: Prohibited-term check (anti-detection / bypass / circumvent)
         run: |
           set -e
-          # Skill files only — README / CONTRIBUTING legitimately mention
-          # these terms in the context of "we DO NOT accept this".
-          shopt -s extglob
-          skill_files=$(ls !(README|CHANGELOG|CONTRIBUTING|SECURITY)*.md 2>/dev/null || true)
-          if [ -z "$skill_files" ]; then
+          mapfile -t skill_files < <(find skills -name SKILL.md)
+          if [ ${#skill_files[@]} -eq 0 ]; then
             echo "No skill files to check"
             exit 0
           fi
-          if echo "$skill_files" | xargs grep -i -E "anti.cheat|anti.detection|circumvent|bypass.*detection|反作弊|反检测" 2>/dev/null; then
-            echo "::error::Found prohibited terms in skill files — see CONTRIBUTING.md"
+          # Scan SKILL.md bodies only. README / CONTRIBUTING / SECURITY /
+          # LICENSE / TRADEMARKS legitimately discuss these terms in a
+          # "we DO NOT accept this" context and are intentionally excluded.
+          if grep -i -n -E "anti.cheat|anti.detection|circumvent|bypass.*detection|反作弊|反检测" "${skill_files[@]}"; then
+            echo "::error::Found prohibited terms in a skill file — see CONTRIBUTING.md"
             exit 1
           fi
           echo "OK — no prohibited terms in skill files"
 
-      - name: Broken-link sniff (heuristic, non-blocking)
+      - name: Broken relative-link sniff (SKILL.md only, non-blocking)
         continue-on-error: true
         run: |
-          # Quick heuristic: look for relative links that point at files
-          # that don't exist in this repo. Doesn't follow external URLs.
           set +e
-          grep -hoE '\[[^]]+\]\(([^):]+\.md)[#)]' *.md 2>/dev/null | \
-            sed -E 's/.*\(([^):#]+)[#)].*/\1/' | sort -u | \
-            while read -r link; do
-              if [ -n "$link" ] && [ ! -f "$link" ]; then
-                echo "::warning::Possibly broken relative link: $link"
-              fi
-            done
+          find skills -name SKILL.md | while read -r f; do
+            dir=$(dirname "$f")
+            grep -hoE '\[[^]]+\]\(([^):]+\.md)[#)]' "$f" 2>/dev/null | \
+              sed -E 's/.*\(([^):#]+)[#)].*/\1/' | sort -u | \
+              while read -r link; do
+                # resolve relative to the SKILL.md's own directory
+                if [ -n "$link" ] && [ ! -f "$dir/$link" ] && [ ! -f "$link" ]; then
+                  echo "::warning::$f: possibly broken relative link: $link"
+                fi
+              done
+          done
           exit 0
