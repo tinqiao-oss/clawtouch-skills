@@ -23,3 +23,16 @@ MCP server / HID firmware), please use their security policies:
 
 - [`clawtouch-mcp` SECURITY.md](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/SECURITY.md)
 - [`clawtouch-hid` SECURITY.md](https://github.com/tinqiao-oss/clawtouch-hid/blob/master/SECURITY.md)
+
+## A note on autonomous-agent risk
+
+These skills are loaded by an LLM agent that then drives real keyboard
+and mouse input, often by reading the screen — which is exactly where an
+agent can be steered by untrusted on-screen content (prompt injection)
+or simply act on a misunderstanding. That is a deployment risk to plan
+for, distinct from a bug in any skill file or in the companion code. For
+the risk disclosure and the operator mitigations (dedicated/least-
+privilege host, human-in-the-loop, network isolation, panic stop,
+treating screen content as untrusted), see the **Autonomy & safety**
+section in the
+[`clawtouch-mcp` README](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/README.md).
