@@ -33,6 +33,6 @@ or simply act on a misunderstanding. That is a deployment risk to plan
 for, distinct from a bug in any skill file or in the companion code. For
 the risk disclosure and the operator mitigations (dedicated/least-
 privilege host, human-in-the-loop, network isolation, panic stop,
-treating screen content as untrusted), see the **Autonomy & safety**
+treating screen content as untrusted), see the **Safety**
 section in the
 [`clawtouch-mcp` README](https://github.com/tinqiao-oss/clawtouch-mcp/blob/master/README.md).
