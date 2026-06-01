@@ -118,6 +118,12 @@ Before opening a PR:
 - [ ] One PR = one new skill, or one focused update to one skill.
       Don't mix skills with refactors
 
+## Code of conduct
+
+This project follows the [Contributor Covenant](CODE_OF_CONDUCT.md). By
+participating you agree to uphold it; report unacceptable behavior to
+`support@tinqiao.com`.
+
 ## License
 
 By submitting a contribution you agree it is licensed under MIT
