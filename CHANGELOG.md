@@ -11,6 +11,8 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-06-02 — paste-text skill · SKILL.md layout migration · accuracy sweep
+
 ### Added — `paste-text` skill (reliable non-ASCII / Chinese text entry)
 
 A cross-cutting technique skill (not app-specific): enter literal text —
@@ -165,5 +167,6 @@ standalone repository on 2026-05-17 once
 the "skill as a soft-guidance layer alongside HID primitives" pattern
 was confirmed worth its own release cadence + contribution flow.
 
-[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.1.0
