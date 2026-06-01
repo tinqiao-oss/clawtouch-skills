@@ -83,7 +83,8 @@ content-generation logic. The calling LLM agent is solely responsible
 for any text, image, audio, or video content it produces while
 following the skill, including compliance with any content-labeling
 or content-moderation obligations applicable in the agent's
-jurisdiction.
+jurisdiction (e.g. PRC *AI Generated Content Labeling Measure*
+effective 2025-09-01).
 
 ## Acceptable use
 
