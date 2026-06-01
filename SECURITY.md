@@ -15,8 +15,7 @@ That said — if you find:
 
 please open a GitHub issue with the `bug` label, **or** if you
 prefer private disclosure, email `support@tinqiao.com` with the
-subject prefix `[clawtouch-skills security]`. We'll respond within
-a few business days.
+subject prefix `[clawtouch-skills security]`. We'll respond as soon as we reasonably can.
 
 For security issues in the companion code repositories (the actual
 MCP server / HID firmware), please use their security policies:
