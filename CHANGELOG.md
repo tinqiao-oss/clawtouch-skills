@@ -71,7 +71,7 @@ New `## Related work` section positions this repo against
 [Anthropic Claude Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview),
 [GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills),
 [`kcchien/skills-cli`](https://github.com/kcchien/skills-cli), and
-[OpenClaw](https://github.com/openclaw/skills) — and states the two
+[OpenClaw](https://github.com/openclaw/openclaw) — and states the two
 ClawTouch differentiators: HID-mode (not API) skills, and
 Chinese-market app focus.
 

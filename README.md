@@ -179,7 +179,7 @@ What's *different* about ClawTouch skills:
 
 * **HID-mode skills, not API skills.** Most published skill packages
   teach an LLM to call a service API
-  ([OpenClaw `feishu-doc`](https://github.com/openclaw/skills/tree/main/skills/autogame-17/feishu-doc),
+  ([OpenClaw](https://github.com/openclaw/openclaw) skill packages,
   GitHub / Slack / Notion connectors). ClawTouch skills teach the LLM
   how to drive the **UI** of those apps via simulated keyboard / mouse —
   the path that's available when there is no API (WPS Office desktop,
