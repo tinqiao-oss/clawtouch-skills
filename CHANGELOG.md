@@ -168,5 +168,4 @@ the "skill as a soft-guidance layer alongside HID primitives" pattern
 was confirmed worth its own release cadence + contribution flow.
 
 [Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.1.0
+[0.2.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.2.0
