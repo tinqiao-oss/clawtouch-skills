@@ -11,7 +11,7 @@
 🌐 **[clawtouch.cn](https://clawtouch.cn)** — 官网, 硬件 / 文档 / 商务咨询。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Skills: 4](https://img.shields.io/badge/skills-4-blue.svg)](#已有-skill)
+[![Skills: 5](https://img.shields.io/badge/skills-5-blue.svg)](#已有-skill)
 [![Commercial: clawtouch.cn](https://img.shields.io/badge/commercial-clawtouch.cn-orange.svg)](https://clawtouch.cn)
 
 ---
@@ -49,6 +49,7 @@ LLM 猜跟实际 UI 差距最大、skill 增量最高的那部分。
 | [`skills/feishu/SKILL.md`](skills/feishu/SKILL.md) | 飞书 / Lark | IM、文档、表格、日历 |
 | [`skills/dingtalk/SKILL.md`](skills/dingtalk/SKILL.md) | 钉钉 | IM、文件、文档、日历 |
 | [`skills/paste-text/SKILL.md`](skills/paste-text/SKILL.md) | 全部应用 (通用技巧) | 非 ASCII / 中文文本经剪贴板粘贴可靠输入 (绕开输入法 & 键盘布局问题) |
+| [`skills/grid-ui-automation/SKILL.md`](skills/grid-ui-automation/SKILL.md) | 全部应用 (通用技巧) | 常规网格 UI 定位点击 —— 从截图标定、批量点击、验证重试 (扫雷、数字键盘、表格单元格、拼图) |
 
 ## 怎么用
 
@@ -107,8 +108,10 @@ ClawTouch 桌面端 (邮件咨询 `support@tinqiao.com`)。
 ## 限制
 
 - Skill 描述的是 2026 年初的 UI 状态。应用会更新; 发现 drift 欢迎 PR。
-- 屏幕坐标故意不写 —— UI 布局随窗口大小、DPI、主题、locale 而变,
-  skill 尽量用键盘路径 (跨布局稳定)。
+- **硬编**屏幕坐标故意不写 —— UI 布局随窗口大小、DPI、主题、locale 而变,
+  skill 尽量用键盘路径 (跨布局稳定)。当必须按位置点击 (没有键盘路径的常规网格)
+  时,[`grid-ui-automation`](skills/grid-ui-automation/SKILL.md) 技巧教你**运行时
+  从实时截图标定坐标**, 而不是把坐标写死。
 - IME (输入法) 状态不在这里处理 —— 调 text typing 前请先把主机
   IME 切对状态。
 

@@ -11,7 +11,7 @@
 🌐 **[clawtouch.cn](https://clawtouch.cn)** — official site for hardware, docs, and commercial inquiries.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Skills: 4](https://img.shields.io/badge/skills-4-blue.svg)](#available-skills)
+[![Skills: 5](https://img.shields.io/badge/skills-5-blue.svg)](#available-skills)
 [![Commercial: clawtouch.cn](https://img.shields.io/badge/commercial-clawtouch.cn-orange.svg)](https://clawtouch.cn)
 
 ---
@@ -53,6 +53,7 @@ conventions, so any compatible client can discover them.
 | [`skills/feishu/SKILL.md`](skills/feishu/SKILL.md) | Feishu / Lark (飞书) | IM, docs, sheets, calendar |
 | [`skills/dingtalk/SKILL.md`](skills/dingtalk/SKILL.md) | DingTalk (钉钉) | IM, file sharing, docs, calendar |
 | [`skills/paste-text/SKILL.md`](skills/paste-text/SKILL.md) | All apps (technique) | Reliable non-ASCII / Chinese text entry via clipboard paste (works around IME & keyboard-layout issues) |
+| [`skills/grid-ui-automation/SKILL.md`](skills/grid-ui-automation/SKILL.md) | All apps (technique) | Positional clicking on a regular grid — calibrate from a screenshot, batch the clicks, verify & retry (minesweeper, keypad, spreadsheet cells, tile puzzles) |
 
 ## How to use
 
@@ -128,9 +129,13 @@ closed-source ClawTouch desktop product (contact `support@tinqiao.com`).
 
 - Skills describe UIs as of early 2026. Apps update; PRs welcome
   when you notice drift.
-- Screen coordinates are intentionally absent — UI layouts differ
-  by window size, DPI, theme, locale. Skills name keyboard paths
-  whenever possible, since those are stable across layouts.
+- **Hardcoded** screen coordinates are intentionally absent — UI layouts
+  differ by window size, DPI, theme, locale. Skills name keyboard paths
+  whenever possible, since those are stable across layouts. When you must
+  click by position (a regular grid with no keyboard route), the
+  [`grid-ui-automation`](skills/grid-ui-automation/SKILL.md) technique
+  derives coordinates from a live screenshot at runtime instead of baking
+  them in.
 - IME / input-method state is not handled here — set the host IME
   to the right state before invoking literal text typing.
 

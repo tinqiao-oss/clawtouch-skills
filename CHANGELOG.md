@@ -11,6 +11,24 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-06-04 — grid-ui-automation skill (positional clicking on regular grids)
+
+### Added — `grid-ui-automation` skill (cross-cutting technique)
+
+A cross-cutting technique skill (not app-specific) for driving a regular,
+grid-structured GUI by positional clicking — minesweeper-style boards,
+on-screen keypads / keyboards, spreadsheet cells, tile puzzles, seat-map
+pickers — when there is no keyboard route. It documents the disciplined
+recipe: **calibrate** the grid from a screenshot at runtime (origin + cell
+pitch, never hardcoded coordinates), **map** a `(row, col)` to an absolute
+pixel, **click** many cells in one `hid.batch` (which spaces consecutive
+clicks so the OS doesn't merge them), and a **screenshot-verify-then-retry
+loop** — because `hid.batch` returning `clicked: true` confirms the HID
+report was sent, not that the app registered the click (USB HID is
+open-loop). Minesweeper is the worked example. The skill explicitly does
+**not** perceive the screen or solve the puzzle — the agent's own
+vision / OCR locates the grid and its own logic picks the cells.
+
 ## [0.2.0] — 2026-06-02 — paste-text skill · SKILL.md layout migration · accuracy sweep
 
 ### Added — `paste-text` skill (reliable non-ASCII / Chinese text entry)
@@ -167,5 +185,6 @@ standalone repository on 2026-05-17 once
 the "skill as a soft-guidance layer alongside HID primitives" pattern
 was confirmed worth its own release cadence + contribution flow.
 
-[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.3.0
 [0.2.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.2.0
