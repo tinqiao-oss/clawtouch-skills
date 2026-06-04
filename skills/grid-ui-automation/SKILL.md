@@ -40,6 +40,10 @@ the server's `--allow-screenshot` flag) or use whatever screen capture your
 client already has. **Locating the grid in that image is your job (vision /
 OCR); this skill is the math and the click discipline once you have it.**
 
+Capture the **whole grid with a margin on all four sides**. A tight crop
+that clips the edge row or column makes you miscount the grid and calibrate
+against the wrong cells (a clipped bottom row reads as one row short).
+
 Pick **two well-separated cells** whose centers you can read off the image —
 the wider apart, the smaller the pitch error:
 
@@ -54,6 +58,9 @@ pitch_y = (yM - y0) / M
 ```
 
 Measuring across many cells and dividing beats eyeballing one cell's width.
+Anchor on the **true center of a cell**, not the board's outer frame or a
+3-D bevel edge — on a framed grid (minesweeper) the dark border isn't a
+cell, and taking it as `(x0, y0)` shifts every coordinate by one cell.
 
 ## Step 2 — map a (row, col) to a screen pixel
 
@@ -68,12 +75,25 @@ These are **absolute screen coordinates** — exactly what `hid.click` and
 `hid.batch` click ops expect by default (the server reads the OS cursor
 position and converges onto the target).
 
-## Step 3 — click the cells in one hid.batch
+## Step 3 — probe once, then click the cells in one hid.batch
 
-When you already know several target cells, send them as one `hid.batch`
-instead of one tool call per click. It runs the ops in strict order and
-**spaces consecutive clicks automatically** (a small default settle on click
-ops) so the OS doesn't merge them:
+**Before firing a batch, do two cheap checks — a wrong calibration clicks
+ten wrong cells at once, and on an irreversible grid like minesweeper that's
+unrecoverable (you detonate a mine you meant to flag):**
+
+1. **Focus the target window first.** On an unfocused window the first click
+   often only *activates* it and is swallowed — the cell action doesn't
+   fire. Expect to click once to focus (a screenshot will show nothing
+   changed), then again to act. Some apps pass the activating click through;
+   many don't.
+2. **Validate the calibration with a single click.** Click one cell,
+   screenshot, and confirm it landed on exactly the cell you intended. Only
+   once that's confirmed do you fire a 10-cell batch.
+
+Then send the targets as one `hid.batch` instead of one tool call per click.
+It runs the ops in strict order and **spaces consecutive clicks
+automatically** (a small default settle on click ops) so the OS doesn't
+merge them:
 
 ```json
 {
@@ -91,8 +111,8 @@ ops) so the OS doesn't merge them:
   Step 2, and absolute mode is what converges onto them. (`relative` is for
   raw deltas, e.g. on Wayland where the OS cursor can't be read.)
 - A sluggish app may need more room than the default gap — set
-  `"delay_ms": 120` on the click ops (each op's delay is capped at
-  2000 ms; larger values are clamped).
+  `"delay_ms": 120` on the click ops (keep it within the 2000 ms per-op
+  ceiling).
 
 ## Step 4 — verify, then retry the misses (the step agents skip)
 
@@ -104,11 +124,16 @@ the click** (USB HID has no app-level feedback). So:
 1. **Screenshot again** after the batch.
 2. **Compare** against what you expected — did those cells reveal / toggle /
    fill?
-3. **Re-click only the cells that didn't change** (a fresh small batch).
+3. **Re-click only the cells that didn't change** — and at most once or
+   twice.
 
-Loop until the board matches, or until a couple of retries show no progress
-— then stop and re-read the whole screen, because something else is wrong
-(a dialog stole focus, the window moved, the wrong cell was targeted). This
+Re-clicking only fixes a genuinely *dropped* click. If a cell still hasn't
+changed after one or two retries, the cause is usually **not** a drop — you
+misread the board, or the calibration drifted (the window moved or
+scrolled), and re-clicking the same pixel won't help. Stop, take a fresh
+screenshot, re-read the whole board, and recalibrate (Step 1) before
+continuing. Sanity-check your *reading* too — a cell that "didn't change"
+may be one you misidentified, not one you missed. This
 screenshot → act → screenshot loop is what makes grid automation reliable;
 the click itself is open-loop.
 

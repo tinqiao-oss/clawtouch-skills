@@ -11,6 +11,30 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-06-04 — grid-ui-automation: real-hardware dogfood hardening
+
+### Changed — `grid-ui-automation` skill (review hardening)
+
+Field-tested refinements to the grid skill from a real-hardware dogfood:
+
+- **Focus the window first.** On an unfocused window the first click often
+  only activates it and is swallowed — expect to click once to focus, then
+  again to act.
+- **Validate calibration with a single click before batching.** A
+  one-cell-off calibration clicks ten wrong cells at once, which is
+  unrecoverable on a grid like minesweeper. Probe with one click + verify
+  before committing a 10-cell batch.
+- **Capture the full grid with a margin** so a tight crop doesn't clip an
+  edge row / column and skew calibration.
+- **Anchor on a true cell center**, not the board's outer frame / bevel
+  (which would shift every coordinate by a cell).
+- **Retry semantics sharpened**: re-clicking only fixes a dropped click; if
+  a cell won't change after one or two retries the cause is a misread or
+  calibration drift — stop and recalibrate, don't keep re-clicking the same
+  pixel.
+- `delay_ms` wording now states the 2000 ms per-op ceiling without implying
+  a specific clamp-vs-reject behaviour (that depends on the client).
+
 ## [0.3.0] — 2026-06-04 — grid-ui-automation skill (positional clicking on regular grids)
 
 ### Added — `grid-ui-automation` skill (cross-cutting technique)
@@ -185,6 +209,7 @@ standalone repository on 2026-05-17 once
 the "skill as a soft-guidance layer alongside HID primitives" pattern
 was confirmed worth its own release cadence + contribution flow.
 
-[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.3.1
 [0.3.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.3.0
 [0.2.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.2.0
