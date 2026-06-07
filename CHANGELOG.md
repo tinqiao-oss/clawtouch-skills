@@ -11,6 +11,20 @@ skills, not breaking API changes.
 
 ## [Unreleased]
 
+## [0.3.2] — 2026-06-07 — `wps-office` shortcut names + CI guard blind spot
+
+### Fixed — `wps-office` shortcut names + CI guard blind spot
+
+- `wps-office` listed sheet navigation as bare prose `Ctrl+PgDn` / `Ctrl+PgUp`
+  and `Ctrl+Shift+L`. `PgDn`/`PgUp` are not in the MCP keycode vocabulary
+  (`pagedown`/`pageup` are), so an agent echoing the token verbatim into
+  `hid.key()` would `ValueError` at call time. Rewritten as
+  `hid.key("ctrl+pagedown")` / `hid.key("ctrl+pageup")` / `hid.key("ctrl+shift+l")`.
+- The keycode CI guard previously linted only `hid.key("...")` calls, so the
+  bare-prose mismatch slipped past it. Extended to also validate bare
+  backtick shortcut combos (e.g. `` `Ctrl+PgDn` ``) against the keycode
+  vocabulary — abbreviations that can't resolve now fail CI.
+
 ## [0.3.1] — 2026-06-04 — grid-ui-automation: real-hardware dogfood hardening
 
 ### Changed — `grid-ui-automation` skill (review hardening)
@@ -209,7 +223,8 @@ standalone repository on 2026-05-17 once
 the "skill as a soft-guidance layer alongside HID primitives" pattern
 was confirmed worth its own release cadence + contribution flow.
 
-[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/tinqiao-oss/clawtouch-skills/compare/v0.3.2...HEAD
+[0.3.2]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.3.2
 [0.3.1]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.3.1
 [0.3.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.3.0
 [0.2.0]: https://github.com/tinqiao-oss/clawtouch-skills/releases/tag/v0.2.0

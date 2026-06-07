@@ -72,15 +72,15 @@ jobs:
           fi
           echo "OK — no prohibited terms in skill files"
 
-      - name: hid.key(...) shorthand resolves against the MCP keycode vocabulary
+      - name: keyboard shortcuts resolve against the MCP keycode vocabulary
         run: |
           python3 - <<'PY'
           import re, sys, pathlib
           # Vendored from clawtouch-mcp: protocol.MODIFIER_NAME_MAP keys +
           # keycodes._KEY_NAME_TO_HID names. Keep in sync if the MCP parser's
           # vocabulary changes. Guards the codex-round-3 "plus" bug class — a
-          # SKILL.md hid.key("...") shorthand the server can't resolve raises
-          # ValueError at tools/call time and fails the agent step.
+          # SKILL.md shortcut the server can't resolve raises ValueError at
+          # tools/call time and fails the agent step.
           MODIFIERS = {"ctrl", "control", "shift", "alt", "gui", "win", "cmd"}
           NAMED = {
               "enter", "return", "escape", "esc", "backspace", "delete", "tab",
@@ -103,21 +103,53 @@ jobs:
                       key_str = tail
               return len(key_str) == 1 or key_str.lower() in NAMED
 
-          pat = re.compile(r'hid\.key\(["\']([^"\']*)["\']\)')
+          def is_shortcut_combo(span: str) -> bool:
+              # A backtick token that LOOKS like a keyboard shortcut:
+              # "Mod+...+key" whose first segment is a known modifier. Excludes
+              # spreadsheet ranges ("A1+A4"), formulas, and prose that merely
+              # contains "+".
+              if "+" not in span:
+                  return False
+              parts = span.split("+")
+              return len(parts) >= 2 and parts[0].strip().lower() in MODIFIERS
+
+          hidkey_pat = re.compile(r'hid\.key\(["\']([^"\']*)["\']\)')
+          backtick_pat = re.compile(r'`([^`]+)`')
           errors = []
           for p in sorted(pathlib.Path("skills").glob("*/SKILL.md")):
-              for m in pat.finditer(p.read_text(encoding="utf-8")):
+              text = p.read_text(encoding="utf-8")
+              # (1) explicit hid.key("...") shorthand must resolve.
+              for m in hidkey_pat.finditer(text):
                   sc = m.group(1)
                   if not resolves(sc):
                       errors.append(
                           f'{p}: hid.key("{sc}") does not resolve '
                           f"(unknown key name or non-modifier prefix)"
                       )
+              # (2) BARE prose shortcut combos (e.g. `Ctrl+PgDn`) must ALSO
+              # resolve: an agent may echo the token verbatim into hid.key(),
+              # so an unresolvable abbreviation (PgDn/PgUp/Del/Ins) would
+              # ValueError at call time. This is the blind spot that let the
+              # WPS `Ctrl+PgDn` mismatch slip past the hid.key()-only check —
+              # write shortcuts as hid.key("ctrl+pagedown") with canonical
+              # names, not abbreviations.
+              for m in backtick_pat.finditer(text):
+                  span = m.group(1).strip()
+                  if "hid." in span:
+                      continue  # actionable hid.key(...) calls handled by (1)
+                  if is_shortcut_combo(span) and not resolves(span):
+                      errors.append(
+                          f'{p}: bare shortcut `{span}` is not resolvable by '
+                          'the MCP keycode parser — write it as hid.key("...") '
+                          "with canonical names (e.g. pagedown/pageup), not "
+                          "abbreviations"
+                      )
           if errors:
               for e in errors:
                   print(f"::error::{e}")
               sys.exit(1)
-          print("OK — every hid.key(...) shorthand resolves against the keycode vocabulary")
+          print("OK — every hid.key(...) shorthand and bare shortcut combo "
+                "resolves against the keycode vocabulary")
           PY
 
       - name: Broken relative-link sniff (SKILL.md only, non-blocking)

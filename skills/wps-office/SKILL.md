@@ -61,8 +61,8 @@ environments** (where WPS is usually the system default for `.docx`).
 | Select column of active cell | `hid.key("ctrl+space")` |
 | Select row of active cell | `hid.key("shift+space")` |
 | Insert row above active row | `hid.key("ctrl+shift+=")` opens dialog → arrow to "整行" → Enter (also accepts `ctrl+shift+plus` / `ctrl+shift+equal` aliases) |
-| Next / previous sheet | `Ctrl+PgDn` / `Ctrl+PgUp` |
-| Filter toggle | `Ctrl+Shift+L` |
+| Next / previous sheet | `hid.key("ctrl+pagedown")` / `hid.key("ctrl+pageup")` |
+| Filter toggle | `hid.key("ctrl+shift+l")` |
 
 ### WPS 表格 vs Excel differences
 
