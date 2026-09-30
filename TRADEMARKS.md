@@ -17,7 +17,7 @@ production of this documentation.
 
 ## Owned marks
 
-The following marks are owned by **Tinqiao Technology (Beijing) Co.,
+The following marks are owned by **Beijing Tinqiao Technology Co.,
 Ltd.** and may not be used to imply endorsement, sponsorship, or
 affiliation without prior written permission:
 
@@ -96,7 +96,7 @@ MIT 协议仅适用于本仓库的著作权文本内容, 不涵盖商标、服�
 
 ### 本公司所有的标志
 
-以下标志归 **北京亭桥科技有限公司** (Tinqiao Technology (Beijing)
+以下标志归 **北京亭桥科技有限公司** (Beijing Tinqiao Technology
 Co., Ltd.) 所有, **未经书面许可不得用于暗示赞助、推荐或关联关系**:
 
 - **ClawTouch**™
