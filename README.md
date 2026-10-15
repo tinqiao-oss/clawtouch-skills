@@ -8,11 +8,11 @@
 > about to use [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp)
 > (or any compatible HID stack) to drive that application.
 
-🌐 **[clawtouch.cn](https://clawtouch.cn)** — official site for hardware, docs, and commercial inquiries.
+🌐 **[clawtouch.cn](https://clawtouch.cn/en/open-source.html)** — official site: the open-source stack and the pre-flashed hardware kit.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Skills: 5](https://img.shields.io/badge/skills-5-blue.svg)](#available-skills)
-[![Commercial: clawtouch.cn](https://img.shields.io/badge/commercial-clawtouch.cn-orange.svg)](https://clawtouch.cn)
+[![Website: clawtouch.cn](https://img.shields.io/badge/website-clawtouch.cn-orange.svg)](https://clawtouch.cn/en/open-source.html)
 
 ---
 
@@ -122,8 +122,8 @@ flag any skill content that risks crossing these lines (see
 
 Skills are **soft guidance** — the LLM still decides what to do, and
 might not follow the skill exactly. That's fine for development,
-research, or personal automation. Stricter execution lives in the
-closed-source ClawTouch desktop product (contact `support@tinqiao.com`).
+research, or personal automation. If you need hard guarantees, enforce
+them in your own agent loop.
 
 ## Limitations
 
@@ -223,5 +223,4 @@ Feishu / Lark, DingTalk) are covered separately in
 any trademark rights and no third-party trademark owner has endorsed
 or sponsored this documentation.
 
-For commercial deployments at scale, enterprise support, or OEM
-hardware discussion: `support@tinqiao.com`.
+Questions: `support@tinqiao.com`.

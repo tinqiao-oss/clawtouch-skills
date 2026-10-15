@@ -8,11 +8,11 @@
 > (或任何兼容的 HID stack) 驱动这个应用时, 先 load 进 context 让它
 > 有局部知识。
 
-🌐 **[clawtouch.cn](https://clawtouch.cn)** — 官网, 硬件 / 文档 / 商务咨询。
+🌐 **[clawtouch.cn](https://clawtouch.cn/open-source.html)** — 官网: 开源套件介绍与烧好固件的硬件套件。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Skills: 5](https://img.shields.io/badge/skills-5-blue.svg)](#已有-skill)
-[![Commercial: clawtouch.cn](https://img.shields.io/badge/commercial-clawtouch.cn-orange.svg)](https://clawtouch.cn)
+[![官网: clawtouch.cn](https://img.shields.io/badge/website-clawtouch.cn-orange.svg)](https://clawtouch.cn/open-source.html)
 
 ---
 
@@ -102,8 +102,8 @@ skill 内容 (见 [CONTRIBUTING.md](CONTRIBUTING.md))。
 ## 软性指导, 不强制
 
 Skill 是**软性指导** —— LLM 仍然自己决定, 可能不完全按 skill 走。
-这对开发 / 研究 / 个人自动化场景没问题; 更严的执行约束在闭源
-ClawTouch 桌面端 (邮件咨询 `support@tinqiao.com`)。
+这对开发 / 研究 / 个人自动化场景没问题; 需要硬性保证的话,
+请在你自己的 agent 循环里做约束。
 
 ## 限制
 
@@ -187,4 +187,4 @@ MIT © 北京亭桥科技有限公司 — 见 [LICENSE](LICENSE) (英文版, 法
 单独规约 —— MIT 协议**不**授予任何商标权利, 任何第三方商标权利人
 均未对本文档进行推荐或赞助。
 
-商业部署、企业支持、OEM 硬件咨询: `support@tinqiao.com`。
+其他问题: `support@tinqiao.com`。
