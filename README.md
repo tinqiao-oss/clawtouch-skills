@@ -2,6 +2,9 @@
 
 # clawtouch-skills
 
+> [!IMPORTANT]
+> **Archived on 2026-11-15 and no longer maintained.** To drive apps with ClawTouch, use [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp) directly; its tool descriptions already cover typing non-ASCII text through the clipboard. The skill files below stay available as they are, under the MIT license.
+
 > **Markdown skill files for LLM agents driving real-world apps through HID.**
 > Concise operator manuals for specific applications — what keyboard
 > shortcut, what menu path, what gotcha — written for an LLM that's

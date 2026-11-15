@@ -2,6 +2,9 @@
 
 # clawtouch-skills
 
+> [!IMPORTANT]
+> **已于 2026-11-15 归档，不再维护。** 用 ClawTouch 驱动应用请直接使用 [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp)，它的工具说明里已经写了用剪贴板输入非 ASCII 文字的做法。下面的 skill 文件按 MIT 许可原样保留。
+
 > **给 LLM agent 驱动具体应用用的 markdown skill 文件集**。
 > 写给 LLM 看的"应用操作手册" — 哪个快捷键、哪个菜单路径、哪些坑 ——
 > 当 LLM 即将用 [`clawtouch-mcp`](https://github.com/tinqiao-oss/clawtouch-mcp)
